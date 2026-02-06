@@ -23,6 +23,21 @@ class LoginPage extends BasePage {
         return $('//android.widget.Button[@text="Login" or @content-desc="Login"]');
     }
 
+    get AllowAccessAlert(){
+        return $('//android.view.ViewGroup[@content-desc="Allow access, PIN"]');
+    }
+
+    get OKButton(){
+        return $('//android.widget.TextView[@text="OK"]')
+    }
+
+    get OKButtonOnAllowAccessAlert() {
+    // ใช้ XPath ที่ระบุว่า TextView ที่มีคำว่า OK และอยู่ภายใต้ ViewGroup ของ Modal
+    return $('//android.view.ViewGroup[@content-desc="Allow access, PIN"]//android.widget.TextView[@text="OK"]');
+}
+
+
+
     /**
      * Method
      */
@@ -62,6 +77,23 @@ class LoginPage extends BasePage {
         await this.loginBtn.click()
     }
 
+    async clickOKinAllowAccessContent(){
+        await this.OKButtonOnAllowAccessAlert.click()
+    }
+
+    async enterPin(pin: string) {
+        for (const digit of pin) {
+            // ใช้ Dynamic Selector เพื่อระบุปุ่มตามตัวเลข
+            const pinButton = await $(`//android.view.ViewGroup[@content-desc="${digit}"]`);
+        
+            await pinButton.waitForDisplayed({ timeout: 2000 });
+            await pinButton.click();
+            
+            console.log(`กดปุ่มหมายเลข: ${digit}`);
+        
+            await browser.pause(300); 
+        }
+    }
 }
 
 export default new LoginPage();

@@ -13,6 +13,10 @@ describe('NIDA Mobile App - Login Test', () => {
         await LoginPage.clickLoginBtn();
         console.log('กดปุ่ม login');
         
+        await LoginPage.clickOKinAllowAccessContent();
+        console.log('กดปุ่ม OK บน POPUP');
 
+        await LoginPage.enterPin('777777');
+        console.log('กรอก PIN เรียบร้อย');
     });
 });
