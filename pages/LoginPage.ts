@@ -1,48 +1,43 @@
 import BasePage from './BasePage.js';
 
 class LoginPage extends BasePage {
-    private get inputUsername() {
+
+    get inputUsername() {
         return $('//android.widget.EditText[@hint="Username"]');
     }
 
-    private get inputPassword() {
+    get inputPassword() {
         return $('//android.widget.EditText[@hint="Password"]');
     }
 
-    private get btnLogin() {
+    get btnLogin() {
         // ใช้ text ของปุ่ม
         return $('//android.widget.Button[@text="Login"]');
     }
 
-    private get btnShowPassword() {
+    get btnShowPassword() {
         return $('//android.widget.ImageButton');
+    }
+
+    get loginBtn(){
+        return $('//android.widget.Button[@text="Login" or @content-desc="Login"]');
     }
 
     /**
      * Method
      */
+
     async login(username: string, password: string) {
-        // รอให้ช่อง username แสดง
         await this.inputUsername.waitForDisplayed({ timeout: 10000 });
-        
-        // กรอก username
-        await this.inputUsername.click(); // คลิกก่อนเพื่อ focus
         await this.inputUsername.setValue(username);
         
-        // กรอก password
-        await this.inputPassword.click();
+        await this.inputPassword.waitForDisplayed({ timeout: 5000 });
         await this.inputPassword.setValue(password);
         
-        // ซ่อน keyboard (ถ้ามี)
-        await browser.hideKeyboard().catch(() => {
-            console.log('Keyboard already hidden');
-        });
+        if (await browser.isKeyboardShown()) {
+            await browser.hideKeyboard().catch(() => console.log('Keyboard already hidden'));
+        }
         
-        // รอสักครู่
-        await browser.pause(1000);
-        
-        // กดปุ่ม Login
-        await this.btnLogin.click();
     }
 
     async isLoginPage() {
@@ -61,6 +56,12 @@ class LoginPage extends BasePage {
         }
         return null;
     }
+
+    async clickLoginBtn(){
+        await this.loginBtn.waitForDisplayed({ timeout: 5000 });
+        await this.loginBtn.click()
+    }
+
 }
 
 export default new LoginPage();
