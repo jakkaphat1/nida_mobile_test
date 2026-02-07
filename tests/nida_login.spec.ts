@@ -18,5 +18,8 @@ describe('NIDA Mobile App - Login Test', () => {
 
         await LoginPage.enterPin('777777');
         console.log('กรอก PIN เรียบร้อย');
+
+        await LoginPage.enterPin2('777777');
+        console.log('กรอก PIN 2 เรียบร้อย');    
     });
 });

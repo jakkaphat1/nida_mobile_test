@@ -36,7 +36,9 @@ class LoginPage extends BasePage {
     return $('//android.view.ViewGroup[@content-desc="Allow access, PIN"]//android.widget.TextView[@text="OK"]');
 }
 
-
+    get SecondPagePin(){
+        return $('//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup')
+    }
 
     /**
      * Method
@@ -82,6 +84,20 @@ class LoginPage extends BasePage {
     }
 
     async enterPin(pin: string) {
+        for (const digit of pin) {
+            // ใช้ Dynamic Selector เพื่อระบุปุ่มตามตัวเลข
+            const pinButton = await $(`//android.view.ViewGroup[@content-desc="${digit}"]`);
+        
+            await pinButton.waitForDisplayed({ timeout: 2000 });
+            await pinButton.click();
+            
+            console.log(`กดปุ่มหมายเลข: ${digit}`);
+        
+            await browser.pause(300); 
+        }
+    }
+
+    async enterPin2(pin: string) {
         for (const digit of pin) {
             // ใช้ Dynamic Selector เพื่อระบุปุ่มตามตัวเลข
             const pinButton = await $(`//android.view.ViewGroup[@content-desc="${digit}"]`);
