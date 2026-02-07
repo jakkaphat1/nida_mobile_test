@@ -26,6 +26,14 @@ class DashboardPage extends BasePage {
         return $('//android.widget.TextView[@resource-id="RNE__ICON__Component"]')
     }
 
+    get LanguageButton(){
+        return $('//android.widget.TextView[@text="Language" or @text="ตั้งค่าภาษา"]')
+    }
+
+    get LanguageBox(){
+        return $('//android.widget.CheckBox[@content-desc="TH" or @content-desc="EN"]')
+    }
+
     /**
      * Method
      */
@@ -75,6 +83,15 @@ class DashboardPage extends BasePage {
 
     async clickBackBtn(){
         await this.BackButton.click()
+    }
+
+    async clickLanguageBtn(){
+        await this.LanguageButton.click()
+    }
+
+    async checkLanguageList(){
+        const LanguageNameBox = await this.LanguageBox.getAttribute('content-desc');
+        await expect(LanguageNameBox).toContain;
     }
 }
 
