@@ -205,4 +205,14 @@ describe('NIDA Mobile App - Dashboard Test', () => {
         await NotificationPage.fillNotiSeachBox('ทดสอบค้นหาช่องค้นหาใน Notification')
         await NotificationPage.clickConfirmSeachBtn()
     });
+
+    it('TC-05.1 ทดสอบดูรายละเอียดของประกาศของมหาวิทยาลัย' , async () => {
+        console.log('แอพเปิดแล้ว');
+        await LoginPage.clickLoginBtn()
+        await LoginPage.enterPin('777777')
+        await DashboardPage.clickSeeDetail()
+        await DashboardPage.checkAnnouncementPage()
+        await DashboardPage.clickBackBtn()
+        await DashboardPage.checkDashboardLandingPage()
+    });
 });

@@ -66,8 +66,41 @@ class DashboardPage extends BasePage {
         return $('//android.widget.TextView[@resource-id="RNE__ICON__Component" and @text=""]')
     }
 
+    get seeDetail(){
+        return $('//android.view.ViewGroup[@content-desc="See details" or @content-desc="ดูรายละเอียด"]')
+    }
 
+    get AnnouncementWordPlace(){
+        return $('//android.widget.TextView[@text="Announcement" or @text="ประกาศ"]')
+    }
 
+    get professorProfile() {
+        return $('//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[1]/android.view.ViewGroup[1]/android.widget.ImageView');
+    }
+
+    get homeIcon() {
+        return $('//android.widget.TextView[@resource-id="RNE__ICON__Component"]');
+    }
+
+    get notificationBell() {
+        return $('//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[1]/android.view.ViewGroup[3]/com.horcrux.svg.SvgView/com.horcrux.svg.GroupView/com.horcrux.svg.PathView');
+    }
+
+    get exitAccount() {
+        return $('//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[1]/android.view.ViewGroup[4]/com.horcrux.svg.SvgView/com.horcrux.svg.GroupView/com.horcrux.svg.PathView[2]');
+    }
+
+    get announcementElement() {
+        return $('//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.widget.ScrollView/android.view.ViewGroup/android.widget.HorizontalScrollView[1]/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup');
+    }
+
+    get activitiesElement() {
+        return $('//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.widget.ScrollView/android.view.ViewGroup/android.widget.HorizontalScrollView[2]/android.view.ViewGroup/android.view.ViewGroup[1]/android.view.ViewGroup');
+    }
+
+    get workingButton() {
+        return $('//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.widget.ScrollView/android.view.ViewGroup/android.widget.ScrollView/android.view.ViewGroup/android.view.ViewGroup[1]');
+    }
 
 
 
@@ -222,7 +255,37 @@ class DashboardPage extends BasePage {
         await this.BackToDashboard.click()
     }
 
+    async clickSeeDetail(){
+        await this.seeDetail.click()
+    }
+
+    async checkAnnouncementPage(){
+        await this.AnnouncementWordPlace.isExisting();
+    }
     
+    async checkDashboardLandingPage() {
+        await expect(this.professorProfile).toBeDisplayed();
+        console.log('Professor Profile is displayed');
+
+        await expect(this.homeIcon).toBeDisplayed();
+        console.log('Home Icon is displayed');
+
+        await expect(this.notificationBell).toBeDisplayed();
+        console.log('Notification Bell is displayed');
+
+        await expect(this.exitAccount).toBeDisplayed();
+        console.log('Exit Account button is displayed');
+
+        await expect(this.announcementElement).toBeDisplayed();
+        console.log('Announcement section is displayed');
+
+        await expect(this.activitiesElement).toBeDisplayed();
+        console.log('Activities section is displayed');
+
+        await expect(this.workingButton).toBeDisplayed();
+        console.log('Working/Menu button is displayed');
+    }
+
 }
 
 export default new DashboardPage();
