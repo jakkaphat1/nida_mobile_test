@@ -84,7 +84,7 @@ describe('NIDA Mobile App - Dashboard Test', () => {
         await LoginPage.enterPin('777777')
         await LoginPage.clickProfessorProfile();
         await DashboardPage.clickLanguageBtn()
-        await DashboardPage.checkLanguageList()
+        await DashboardPage.clickBackBtn()
     });
 
     it('TC-03.2 กรณีตั้งค่าการเข้าถึง' , async () => {
@@ -92,7 +92,7 @@ describe('NIDA Mobile App - Dashboard Test', () => {
         await LoginPage.clickLoginBtn()
         await LoginPage.enterPin('777777')
         await LoginPage.clickProfessorProfile();
-        await DashboardPage.clickLanguageBtn()
-        await DashboardPage.checkLanguageList()
+        await DashboardPage.clickAccessbilityBtn()
+        await DashboardPage.clickBackBtn()
     });
 });

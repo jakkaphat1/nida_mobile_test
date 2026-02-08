@@ -34,6 +34,10 @@ class DashboardPage extends BasePage {
         return $('//android.widget.CheckBox[@content-desc="TH" or @content-desc="EN"]')
     }
 
+    get AccessbilityButton(){
+        return $('//android.widget.TextView[@text="Accessibility" or @text="ตั้งค่าการเข้าถึง"]')
+    }
+
     /**
      * Method
      */
@@ -92,6 +96,10 @@ class DashboardPage extends BasePage {
     async checkLanguageList(){
         const LanguageNameBox = await this.LanguageBox.getAttribute('content-desc');
         await expect(LanguageNameBox).toContain;
+    }
+
+    async clickAccessbilityBtn(){
+        await this.AccessbilityButton.click()
     }
 }
 
