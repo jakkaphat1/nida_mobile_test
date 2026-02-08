@@ -129,5 +129,6 @@ describe('NIDA Mobile App - Dashboard Test', () => {
         await DashboardPage.setToggleState('Notification via Message', true);
         
         await DashboardPage.clickBackBtn()
+        await DashboardPage.clickBackBtn()
     });
 });
