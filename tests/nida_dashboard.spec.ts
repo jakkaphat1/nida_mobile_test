@@ -224,4 +224,11 @@ describe('NIDA Mobile App - Dashboard Test', () => {
         await DashboardPage.swipeActivityLeft();
         await expect(DashboardPage.activityCard(2)).toBeDisplayed();
     });
+
+    it('TC-07.1 การเข้าใช้งานแอปพลิเคชัน NIDA อาจารย์ นักศึกษา' , async () => {
+        console.log('แอพเปิดแล้ว');
+        await LoginPage.clickLoginBtn()
+        await LoginPage.enterPin('777777')
+        await DashboardPage.clickApplicationByName('NIDA Ajan Nisit','NIDA อาจารย์ นักศึกษา')
+    });
 });

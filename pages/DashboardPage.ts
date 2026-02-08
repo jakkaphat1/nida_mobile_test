@@ -102,7 +102,13 @@ class DashboardPage extends BasePage {
         return $('//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.widget.ScrollView/android.view.ViewGroup/android.widget.ScrollView/android.view.ViewGroup/android.view.ViewGroup[1]');
     }
 
+    getAppIconElement(thaiName: string, engName: string) {
+        return $(`//android.widget.TextView[@text="${thaiName}" or @text="${engName}"]/../android.view.ViewGroup[1]`);
+    }
 
+    getSubapplicationButton(thaiName : string ,engName: string ){
+        return $(`//android.widget.TextView[@text="${thaiName}" or @text="${engName}"]`)
+    }
 
 
 
@@ -317,6 +323,11 @@ class DashboardPage extends BasePage {
         ]);
         
         await browser.pause(1000);
+    }
+
+    async clickApplicationByName(thaiName: string, engName: string){
+        const appIcon = this.getAppIconElement(thaiName, engName);
+        await appIcon.click()
     }
 }
 
