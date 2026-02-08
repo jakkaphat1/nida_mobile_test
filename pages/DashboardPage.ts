@@ -73,11 +73,6 @@ class DashboardPage extends BasePage {
 
 
 
-
-
-
-
-
     /**
      * Method
      */
@@ -226,6 +221,8 @@ class DashboardPage extends BasePage {
     async clickBackToDashboard(){
         await this.BackToDashboard.click()
     }
+
+    
 }
 
 export default new DashboardPage();

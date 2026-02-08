@@ -1,6 +1,7 @@
 import DashboardPage from '../pages/DashboardPage.js';
 import LandingPage from '../pages/LandingPage.js';
 import LoginPage from '../pages/LoginPage.js';
+import NotificationPage from '../pages/NotificationPage.js';
 
 describe('NIDA Mobile App - Dashboard Test', () => {
 
@@ -147,5 +148,33 @@ describe('NIDA Mobile App - Dashboard Test', () => {
         await DashboardPage.checkTermOfUse('สิทธิในการได้รับแจ้ง จะมีการแจ้ง “ประกาศเกี่ยวกับความเป็นส่วนตัว (Privacy Notice)” ที่มีรายละเอียดวัตถุประสงค์ในการเก็บรวบรวม ใช้ และเปิดเผยข้อมูลส่วนบุคคลที่ชัดเจนสิทธิในการเพิกถอนความยินยอม ท่านสามารถขอเพิกถอนความยินยอมที่เคยให้สถาบันไว้ได้ทุกเมื่อ ทั้งนี้ไม่ส่งผลกระทบต่อการเก็บรวบรวม ใช้หรือเปิดเผยข้อมูลส่วนบุคคลที่ท่านได้ให้ความ ยินยอมไปแล้วโดยชอบ เฉพาะสำหรับข้อมูลส่วนบุคคลที่ได้เก็บรวบรวม ใช้')
         await DashboardPage.clickBackBtn()
         await DashboardPage.clickBackToDashboard()
+    });
+
+    it('TC-04.1 ทดสอบดูแจ้งเตือนข่าวสาร/สถานะคำร้อง' , async () => {
+        console.log('แอพเปิดแล้ว');
+        await LoginPage.clickLoginBtn()
+        await LoginPage.enterPin('777777')
+        await NotificationPage.clickNotificationBellBtn()
+        await NotificationPage.checkNotificationFilter('รายวิชา', 'Subject');
+        await NotificationPage.checkNotificationFilter('ส่วนกลาง', 'Central');
+        await NotificationPage.checkNotificationFilter('หน่วยงาน', 'Agency');
+        await NotificationPage.checkNotificationFilter('ส่วนตัว', 'Personal');
+    });
+
+    it('TC-04.2 ทดสอบ Filter ตามกลุ่มงาน' , async () => {
+        console.log('แอพเปิดแล้ว');
+        await LoginPage.clickLoginBtn()
+        await LoginPage.enterPin('777777')
+        await NotificationPage.clickNotificationBellBtn()
+        await NotificationPage.checkNotificationFilter('รายวิชา', 'Subject');
+        await NotificationPage.checkNotificationFilter('ส่วนกลาง', 'Central');
+        await NotificationPage.checkNotificationFilter('หน่วยงาน', 'Agency');
+        await NotificationPage.checkNotificationFilter('ส่วนตัว', 'Personal');
+
+        await NotificationPage.clickFilterAllNotiBtn()
+        await browser.pause(500);
+        const result = await NotificationPage.checkAllSubFiltersExist();
+    
+        expect(result.allFound).toBe(true);
     });
 });
