@@ -61,7 +61,10 @@ class DashboardPage extends BasePage {
     get TermOfUseButton(){
         return $('//android.widget.TextView[@text="Terms of use" or @text="เงื่อนไขการใช้งานแอป"]')
     }
-
+    
+    get BackToDashboard(){
+        return $('//android.widget.TextView[@resource-id="RNE__ICON__Component" and @text=""]')
+    }
 
 
 
@@ -218,6 +221,10 @@ class DashboardPage extends BasePage {
         }
         
         return exists;
+    }
+
+    async clickBackToDashboard(){
+        await this.BackToDashboard.click()
     }
 }
 

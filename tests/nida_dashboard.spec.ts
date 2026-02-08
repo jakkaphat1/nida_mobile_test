@@ -146,5 +146,6 @@ describe('NIDA Mobile App - Dashboard Test', () => {
         await DashboardPage.clickTermOFUseBtn()
         await DashboardPage.checkTermOfUse('สิทธิในการได้รับแจ้ง จะมีการแจ้ง “ประกาศเกี่ยวกับความเป็นส่วนตัว (Privacy Notice)” ที่มีรายละเอียดวัตถุประสงค์ในการเก็บรวบรวม ใช้ และเปิดเผยข้อมูลส่วนบุคคลที่ชัดเจนสิทธิในการเพิกถอนความยินยอม ท่านสามารถขอเพิกถอนความยินยอมที่เคยให้สถาบันไว้ได้ทุกเมื่อ ทั้งนี้ไม่ส่งผลกระทบต่อการเก็บรวบรวม ใช้หรือเปิดเผยข้อมูลส่วนบุคคลที่ท่านได้ให้ความ ยินยอมไปแล้วโดยชอบ เฉพาะสำหรับข้อมูลส่วนบุคคลที่ได้เก็บรวบรวม ใช้')
         await DashboardPage.clickBackBtn()
+        await DashboardPage.clickBackToDashboard()
     });
 });
