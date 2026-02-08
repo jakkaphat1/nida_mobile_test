@@ -181,4 +181,17 @@ describe('NIDA Mobile App - Dashboard Test', () => {
     
         // expect(result.allFound).toBe(true);
     });
+
+    it('TC-04.3 ทดสอบ Filter ตามสถานะข้อความ' , async () => {
+        console.log('แอพเปิดแล้ว');
+        await LoginPage.clickLoginBtn()
+        await LoginPage.enterPin('777777')
+        await NotificationPage.clickNotificationBellBtn()
+        await NotificationPage.clickFilterAllNotiBtn()
+        await browser.pause(500);
+        const result = await NotificationPage.checkAllSubFiltersExist();
+        expect(result.allFound).toBe(true);
+
+        await NotificationPage.clickSubFilter('read')
+    });
 });
