@@ -30,11 +30,33 @@ class NotificationPage extends BasePage {
     get SubFilterNotiReadButton() {
         return $('//android.view.ViewGroup[@content-desc="Read" or @content-desc="อ่านแล้ว"]');
     }
+
+    get NotificationSearchButton(){
+        return $('//android.widget.TextView[@resource-id="RNE__ICON__Component" and @text=""]')
+    }
+
+    get FillNotificationSearchBox(){
+        // return $('//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[1]')
+        return $('//android.widget.EditText');
+    }
+
+    get confirmSeachButton(){
+        return $('//android.widget.Button[@content-desc="Search"]')
+    }
+
+
+
+
+
+
+
+
+
+
+
     /**
      * Method
      */
-
-
 
     async clickNotificationBellBtn(){
         await this.NotificationBellButton.click()
@@ -116,6 +138,21 @@ class NotificationPage extends BasePage {
             console.error(`ไม่พบปุ่ม Filter: ${thaiName}/${englishName} หรือกดไม่ได้`);
             throw new Error(`Filter "${thaiName}" not found or not clickable.`);
         }
+    }
+
+    async clickNotificationSearchBtn(){
+        await this.NotificationSearchButton.click()
+    }
+
+    async fillNotiSeachBox(searchingWord:string){
+        await this.FillNotificationSearchBox.waitForDisplayed();
+        await this.FillNotificationSearchBox.click();
+        await this.FillNotificationSearchBox.addValue(searchingWord);
+        // await browser.keys(searchingWord.split(''));
+    }
+
+    async clickConfirmSeachBtn(){
+        await this.confirmSeachButton.click()
     }
 }
 
