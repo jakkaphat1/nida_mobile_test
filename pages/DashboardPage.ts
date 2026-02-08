@@ -286,6 +286,38 @@ class DashboardPage extends BasePage {
         console.log('Working/Menu button is displayed');
     }
 
+    activityCard(index: number) {
+        return $(`//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.widget.ScrollView/android.view.ViewGroup/android.widget.HorizontalScrollView[2]/android.view.ViewGroup/android.view.ViewGroup[${index}]/android.view.ViewGroup`);
+    }
+
+    async swipeActivityLeft() {
+        const firstCard = await this.activityCard(1);
+        await firstCard.waitForDisplayed();
+
+        const location = await firstCard.getLocation();
+        const size = await firstCard.getSize();
+
+        const startX = location.x + (size.width * 0.8);
+        const endX = location.x + (size.width * 0.001);
+        const anchorY = location.y + (size.height / 2);
+
+        await driver.performActions([
+            {
+                type: 'pointer',
+                id: 'finger1',
+                parameters: { pointerType: 'touch' },
+                actions: [
+                    { type: 'pointerMove', duration: 0, x: startX, y: anchorY }, 
+                    { type: 'pointerDown', button: 0 },                          
+                    { type: 'pause', duration: 200 },                            
+                    { type: 'pointerMove', duration: 1000, x: endX, y: anchorY },
+                    { type: 'pointerUp', button: 0 },                           
+                ],
+            },
+        ]);
+        
+        await browser.pause(1000);
+    }
 }
 
 export default new DashboardPage();
