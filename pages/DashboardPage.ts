@@ -58,6 +58,10 @@ class DashboardPage extends BasePage {
         return $('//android.widget.TextView[@text="Privacy policy" or @text="นโยบายความเป็นส่วนตัว"]')
     }
 
+    get TermOfUseButton(){
+        return $('//android.widget.TextView[@text="Terms of use" or @text="เงื่อนไขการใช้งานแอป"]')
+    }
+
 
 
 
@@ -131,6 +135,8 @@ class DashboardPage extends BasePage {
         await expect(LanguageNameBox).toContain;
     }
 
+
+
     async clickAccessbilityBtn(){
         await this.AccessbilityButton.click()
     }
@@ -194,6 +200,24 @@ class DashboardPage extends BasePage {
 
     async clickPrivacyBtn(){
         await this.PrivacyButton.click()
+    }
+
+    async clickTermOFUseBtn(){
+        await this.TermOfUseButton.click()
+    }
+
+    async checkTermOfUse(expectedText: string) {
+        const privacyXPath = `//android.widget.TextView[@text="${expectedText}"]`;
+        const element = await $(privacyXPath);
+        const exists = await element.isExisting();
+        
+        if (exists) {
+            console.log('พบข้อความที่ต้องการ');
+        } else {
+            console.log('ไม่พบข้อความ');
+        }
+        
+        return exists;
     }
 }
 
