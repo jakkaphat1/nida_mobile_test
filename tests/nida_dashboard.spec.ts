@@ -95,4 +95,39 @@ describe('NIDA Mobile App - Dashboard Test', () => {
         await DashboardPage.clickAccessbilityBtn()
         await DashboardPage.clickBackBtn()
     });
+
+    it('TC-03.3 กรณีตั้งค่าการแจ้งเตือน' , async () => {
+        console.log('แอพเปิดแล้ว');
+        await LoginPage.clickLoginBtn()
+        await LoginPage.enterPin('777777')
+        await LoginPage.clickProfessorProfile();
+        await DashboardPage.clickNotificationBtn()
+
+        const expectedNotificationsTH = [
+            'งานลงทะเบียน',
+            'งานอาจารย์ที่ปรึกษา',
+            'งานประเมิน',
+            'งานเทียบโอนรายวิชา',
+            'งานหลักสูตร มคอ. 2',
+            'งานขอสำเร็จการศึกษา',
+            'งานประมวลผลเกรด'
+        ];
+
+        const expectedNotificationsEN = [
+            'Enrollment',
+            'Advisor',
+            'Assessment',
+            'Course',
+            'Curriculum',
+            'Graduation',
+            'Grade'
+        ];
+
+        await DashboardPage.verifyNotificationItems(expectedNotificationsEN);
+        await DashboardPage.clickNotificationWorkByName('Enrollment')
+        await DashboardPage.checkSubNotificationWorkByName(['Notification via Message','Notification via Email'])
+        await DashboardPage.setToggleState('Notification via Message', true);
+        
+        await DashboardPage.clickBackBtn()
+    });
 });

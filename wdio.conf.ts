@@ -17,7 +17,8 @@ export const config = {
         'appium:newCommandTimeout': 3600,  
         'appium:noReset': true,              
         'appium:dontTerminateApp': true,           
-        'appium:shouldTerminateApp': false 
+        'appium:shouldTerminateApp': false,
+        'appium:enforceXPath1': true
 
     }],
 

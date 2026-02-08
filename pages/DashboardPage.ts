@@ -38,6 +38,37 @@ class DashboardPage extends BasePage {
         return $('//android.widget.TextView[@text="Accessibility" or @text="ตั้งค่าการเข้าถึง"]')
     }
 
+    get NotificationButton(){
+        return $('//android.widget.TextView[@text="Notification" or @text="ตั้งค่าการแจ้งเตือน"]')
+    }
+
+    getNotificationWorkTypeButton(workName : string){
+        return $(`//android.widget.TextView[@text="${workName}"]`)
+    }
+
+    getSubNotificationWork(workName : string){
+        return $(`//android.widget.TextView[@text="${workName}"]`);
+    }
+
+    getToggleElement(label: string) {
+        return $(`//android.widget.TextView[@text="${label}"]/../..//*[@clickable="true"]`);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     /**
      * Method
      */
@@ -100,6 +131,63 @@ class DashboardPage extends BasePage {
 
     async clickAccessbilityBtn(){
         await this.AccessbilityButton.click()
+    }
+
+    async clickNotificationBtn(){
+        await this.NotificationButton.click()
+    }
+
+    async verifyNotificationItems(items: string[]) {
+        for (const item of items) {
+            const selector = `android=new UiScrollable(new UiSelector().scrollable(true)).scrollTextIntoView("${item}")`;
+            
+            const element = $(selector);
+
+            await element.waitForExist({ timeout: 10000 });
+            await expect(element).toExist();
+            
+            console.log(`พบเมนู: "${item}"`);
+        }
+    }
+
+    async clickNotificationWorkByName(workName : string){
+        await this.getNotificationWorkTypeButton(workName).click()
+    }
+
+    async checkSubNotificationWorkByName(workNames : string[]){
+        for (const name of workNames) {
+
+            const element = this.getSubNotificationWork(name);
+        
+            await $(`android=new UiScrollable(new UiSelector().scrollable(true)).scrollTextIntoView("${name}")`);
+
+            await expect(element).toExist();
+            console.log(`พบหัวข้อย่อย: ${name}`);
+        }
+    }
+
+    async setToggleState(label: string, wantEnable: boolean) {
+        await $(`android=new UiScrollable(new UiSelector().scrollable(true)).scrollTextIntoView("${label}")`);
+        await browser.pause(500);
+
+        const toggleXPath = `//android.widget.TextView[@text="${label}"]/../android.view.ViewGroup[@clickable="true"]`;
+        const toggleBtn = await $(toggleXPath);
+        await toggleBtn.waitForDisplayed({ timeout: 5000 });
+
+        const currentState = await toggleBtn.getAttribute('checked');
+        const isCurrentlyOn = currentState === 'true';
+
+        console.log(`[${label}] Current: ${isCurrentlyOn} → Want: ${wantEnable}`);
+
+        if (isCurrentlyOn !== wantEnable) {
+            await toggleBtn.click();
+            console.log(`Clicked toggle button`);
+            await browser.pause(1000);
+            
+            console.log(`Toggle action completed`);
+        } else {
+            console.log(`Already at desired state`);
+        }
     }
 }
 
