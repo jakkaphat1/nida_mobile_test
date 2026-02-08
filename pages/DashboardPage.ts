@@ -54,7 +54,9 @@ class DashboardPage extends BasePage {
         return $(`//android.widget.TextView[@text="${label}"]/../..//*[@clickable="true"]`);
     }
 
-
+    get PrivacyButton(){
+        return $('//android.widget.TextView[@text="Privacy policy" or @text="นโยบายความเป็นส่วนตัว"]')
+    }
 
 
 
@@ -188,6 +190,10 @@ class DashboardPage extends BasePage {
         } else {
             console.log(`Already at desired state`);
         }
+    }
+
+    async clickPrivacyBtn(){
+        await this.PrivacyButton.click()
     }
 }
 

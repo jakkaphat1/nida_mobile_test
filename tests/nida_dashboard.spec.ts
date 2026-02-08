@@ -39,9 +39,6 @@ describe('NIDA Mobile App - Dashboard Test', () => {
 
     });
 
-
-
-
     it('TC-02 กรอก Username และ Password ได้', async () => {
         console.log('แอพเปิดแล้ว');
         await LoginPage.clickLoginBtn()
@@ -129,6 +126,15 @@ describe('NIDA Mobile App - Dashboard Test', () => {
         await DashboardPage.setToggleState('Notification via Message', true);
         
         await DashboardPage.clickBackBtn()
+        await DashboardPage.clickBackBtn()
+    });
+
+    it('TC-03.4 ทดสอบดูนโยบายความเป็นส่วนตัว' , async () => {
+        console.log('แอพเปิดแล้ว');
+        await LoginPage.clickLoginBtn()
+        await LoginPage.enterPin('777777')
+        await LoginPage.clickProfessorProfile();
+        await DashboardPage.clickPrivacyBtn()
         await DashboardPage.clickBackBtn()
     });
 });
