@@ -100,6 +100,23 @@ class NotificationPage extends BasePage {
         await button.click();
         console.log(`คลิก Sub-Filter: ${name}`);
     }
+
+    async clickNotificationFilter(thaiName: string, englishName: string) {
+        const filter = this.getNotiFilterButton(thaiName, englishName);
+        try {
+            await filter.waitForDisplayed({ timeout: 3000 });
+            
+            const label = await filter.getAttribute('content-desc') || thaiName;
+            console.log(`กำลังกด Filter: "${label}"`);
+            
+            await filter.click();
+            await browser.pause(1000); 
+
+        } catch (error) {
+            console.error(`ไม่พบปุ่ม Filter: ${thaiName}/${englishName} หรือกดไม่ได้`);
+            throw new Error(`Filter "${thaiName}" not found or not clickable.`);
+        }
+    }
 }
 
 export default new NotificationPage();
