@@ -266,4 +266,17 @@ describe('NIDA Mobile App - Dashboard Test', () => {
         await NIDAAjarnApplicationPage.clickMenuINtodo('กรอกเกรด')
         await NIDAAjarnApplicationPage.clickExitMenuINtodo()
     });
+
+    it('TC-07.5 ทดสอบตรวจสอบงานลงทะเบียน (ตัวอย่าง) * ตรวจสอบนัดหมายนักศึกษา' , async () => {
+        console.log('แอพเปิดแล้ว');
+        await LoginPage.clickLoginBtn()
+        await LoginPage.enterPin('777777')
+        await DashboardPage.clickApplicationByName('NIDA Ajan Nisit','NIDA อาจารย์ นิสิต')
+        await NIDAAjarnApplicationPage.checkNIDAAjarnApplicationPage()
+        await NIDAAjarnApplicationPage.clickTodoTab()
+        await NIDAAjarnApplicationPage.clickMenuINtodo('นัดหมายนิสิต')
+        await browser.pause(500)
+        await NIDAAjarnApplicationPage.clickExitMenuINtodo()
+        await DashboardPage.clickBackBtn()
+    });
 });

@@ -14,18 +14,18 @@ class NIDAAjarnApplicationPage extends BasePage {
         return $(`//android.view.ViewGroup[@resource-id="${currentMonthId}"]`);
     }
     get calendarTab() {
-        return $('//android.view.View[@content-desc="HOME" or content-desc="ปฏิทินกิจกรรม"]');
+        return $('//android.view.View[@content-desc="HOME" or @content-desc="ปฏิทินกิจกรรม"]');
     }
     get todoTab() {
-        return $('//android.view.View[@content-desc="TODO" or content-desc="งานที่ต้องทำ"]');
+        return $('//android.view.View[@content-desc="TODO" or @content-desc="งานที่ต้องทำ"]');
     }
 
     get filterAppointment() {
-        return $('//android.view.ViewGroup[@content-desc="Appointment" or content-desc="กิจกรรมนัดหมาย"]');
+        return $('//android.view.ViewGroup[@content-desc="Appointment" @or content-desc="กิจกรรมนัดหมาย"]');
     }
     
     get filterAcademic() {
-        return $('//android.view.ViewGroup[@content-desc="Academic" or content-desc="กิจกรรมมหาลัย"]');
+        return $('//android.view.ViewGroup[@content-desc="Academic" @or content-desc="กิจกรรมมหาลัย"]');
     }
 
     getMenuINtodo(menuName:string){
