@@ -279,4 +279,12 @@ describe('NIDA Mobile App - Dashboard Test', () => {
         await NIDAAjarnApplicationPage.clickExitMenuINtodo()
         await DashboardPage.clickBackBtn()
     });
+
+    it('TC-08 ทดสอบเข้าใช้งานระบบย่อย' , async () => {
+        console.log('แอพเปิดแล้ว');
+        await LoginPage.clickLoginBtn()
+        await LoginPage.enterPin('777777')
+        await browser.pause(2000);
+        await DashboardPage.clickNIDAUappBtn()
+    });
 });

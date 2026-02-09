@@ -103,11 +103,16 @@ class DashboardPage extends BasePage {
     }
 
     getAppIconElement(thaiName: string, engName: string) {
-        return $(`//android.widget.TextView[@text="${thaiName}" or @text="${engName}"]/../android.view.ViewGroup[1]`);
+        // return $(`//android.widget.TextView[@text="${thaiName}" or @text="${engName}"]/../android.view.ViewGroup[1]`);
+        return $(`//android.widget.TextView[@text="${thaiName}" or @text="${engName}"]/ancestor::*[@clickable="true"][1]`);
     }
 
     getSubapplicationButton(thaiName : string ,engName: string ){
         return $(`//android.widget.TextView[@text="${thaiName}" or @text="${engName}"]`)
+    }
+
+    get NIDAUappButton(){
+        return $('//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.widget.ScrollView/android.view.ViewGroup/android.widget.ScrollView/android.view.ViewGroup/android.view.ViewGroup[1]/android.view.ViewGroup[2]')
     }
 
 
@@ -327,7 +332,14 @@ class DashboardPage extends BasePage {
 
     async clickApplicationByName(thaiName: string, engName: string){
         const appIcon = this.getAppIconElement(thaiName, engName);
+        const textElement = $(`//android.widget.TextView[@text="${thaiName}" or @text="${engName}"]`);
+        await textElement.waitForDisplayed({ timeout: 10000 });
         await appIcon.click()
+        console.log(`กด ${thaiName} หรือ ${engName} แล้ว`)
+    }
+
+    async clickNIDAUappBtn(){
+        await this.NIDAUappButton.click()
     }
 }
 
