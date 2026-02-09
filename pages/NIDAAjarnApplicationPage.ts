@@ -27,6 +27,17 @@ class NIDAAjarnApplicationPage extends BasePage {
     get filterAcademic() {
         return $('//android.view.ViewGroup[@content-desc="Academic" or content-desc="กิจกรรมมหาลัย"]');
     }
+
+    getMenuINtodo(menuName:string){
+        return $(`//android.view.ViewGroup[contains(@content-desc, "${menuName}")]`);
+    }
+
+    get exitMenuINtodo(){
+        return $('//android.widget.TextView[@resource-id="RNE__ICON__Component" and @text=""]')
+    }
+
+
+
     /**
      * Method
      */
@@ -55,6 +66,29 @@ class NIDAAjarnApplicationPage extends BasePage {
 
         await this.filterAcademic.waitForDisplayed();
         await expect(this.filterAcademic).toBeDisplayed();
+    }
+
+    async clickCalendarFilterAppointment(){
+        await this.filterAppointment.waitForDisplayed();
+        await this.filterAppointment.click()
+    }
+
+    async clickCalendarFilterAcademic(){
+        await this.filterAcademic.waitForDisplayed();
+        await this.filterAcademic.click()
+    }
+
+    async clickTodoTab(){
+        await this.todoTab.click()
+    }
+
+    async clickMenuINtodo(menuName: string) {
+        await this.getMenuINtodo(menuName).click(); 
+        await browser.pause(4000);
+    }
+
+    async clickExitMenuINtodo(){
+        await this.exitMenuINtodo.click()
     }
 }
 

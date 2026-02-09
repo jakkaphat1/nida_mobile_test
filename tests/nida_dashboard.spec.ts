@@ -234,4 +234,36 @@ describe('NIDA Mobile App - Dashboard Test', () => {
         await NIDAAjarnApplicationPage.checkNIDAAjarnApplicationPage()
         await NIDAAjarnApplicationPage.checkCalendarPageElements()
     });
+
+    // it('TC-07.2 ทดสอบดูกิจกรรมต่าง ๆ จากปฏิทิน' , async () => {
+    //     console.log('แอพเปิดแล้ว');
+    //     await LoginPage.clickLoginBtn()
+    //     await LoginPage.enterPin('777777')
+    //     await DashboardPage.clickApplicationByName('NIDA Ajan Nisit','NIDA อาจารย์ นักศึกษา')
+    //     await NIDAAjarnApplicationPage.checkNIDAAjarnApplicationPage()
+    //     await NIDAAjarnApplicationPage.checkCalendarPageElements()
+    // });
+
+    it('TC-07.3 ทดสอบดูกิจกรรมตามปฏิทินการศึกษา' , async () => {
+        console.log('แอพเปิดแล้ว');
+        await LoginPage.clickLoginBtn()
+        await LoginPage.enterPin('777777')
+        await DashboardPage.clickApplicationByName('NIDA Ajan Nisit','NIDA อาจารย์ นักศึกษา')
+        await NIDAAjarnApplicationPage.checkNIDAAjarnApplicationPage()
+        await NIDAAjarnApplicationPage.checkCalendarPageElements()
+        await NIDAAjarnApplicationPage.clickCalendarFilterAppointment()
+        // await NIDAAjarnApplicationPage.clickCalendarFilterAcademic()
+    });
+
+    it('TC-07.4 ทดสอบตรวจสอบ และดำเนินการสำหรับงานที่รอดำเนินการ' , async () => {
+        console.log('แอพเปิดแล้ว');
+        await LoginPage.clickLoginBtn()
+        await LoginPage.enterPin('777777')
+        await DashboardPage.clickApplicationByName('NIDA Ajan Nisit','NIDA อาจารย์ นิสิต')
+        await NIDAAjarnApplicationPage.checkNIDAAjarnApplicationPage()
+        await NIDAAjarnApplicationPage.checkCalendarPageElements()
+        await NIDAAjarnApplicationPage.clickTodoTab()
+        await NIDAAjarnApplicationPage.clickMenuINtodo('กรอกเกรด')
+        await NIDAAjarnApplicationPage.clickExitMenuINtodo()
+    });
 });
