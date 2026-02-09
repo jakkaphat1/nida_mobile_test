@@ -82,6 +82,8 @@ class DashboardPage extends BasePage {
         return $('//android.widget.TextView[@resource-id="RNE__ICON__Component"]');
     }
 
+    
+
     get notificationBell() {
         return $('//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[1]/android.view.ViewGroup[3]/com.horcrux.svg.SvgView/com.horcrux.svg.GroupView/com.horcrux.svg.PathView');
     }
@@ -117,6 +119,18 @@ class DashboardPage extends BasePage {
 
     get exitAccountButton(){
         return $('//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[1]/android.view.ViewGroup[4]/com.horcrux.svg.SvgView/com.horcrux.svg.GroupView/com.horcrux.svg.PathView[1]')
+    }
+
+    get signOutButton(){
+        return $('//android.widget.Button[@content-desc="ออกจากระบบ"]')
+    }
+
+    get confirmSignOutButton() {
+        return $('//android.widget.Button[@content-desc="ออกจากระบบ"]');
+    }
+
+    get signOutPopupText() {
+        return $('//android.view.ViewGroup[contains(@content-desc, "คุณแน่ใจว่าต้องการ")]');
     }
 
 
@@ -300,6 +314,10 @@ class DashboardPage extends BasePage {
         console.log('Working/Menu button is displayed');
     }
 
+    async clickProfessorProfile(){
+        await this.professorProfile.click()
+    }
+
     activityCard(index: number) {
         return $(`//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.widget.ScrollView/android.view.ViewGroup/android.widget.HorizontalScrollView[2]/android.view.ViewGroup/android.view.ViewGroup[${index}]/android.view.ViewGroup`);
     }
@@ -347,6 +365,15 @@ class DashboardPage extends BasePage {
 
     async clickExitAccountBtn(){
         await this.exitAccountButton.click()
+    }
+
+    async clickSignOutAccountBtn(){
+        await this.signOutButton.click()
+    }
+
+    async clickConfirmSignOut() {
+        await this.signOutPopupText.waitForDisplayed({ timeout: 5000 });
+        await this.confirmSignOutButton.click();
     }
 }
 
