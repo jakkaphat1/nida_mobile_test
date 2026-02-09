@@ -287,4 +287,16 @@ describe('NIDA Mobile App - Dashboard Test', () => {
         await browser.pause(2000);
         await DashboardPage.clickNIDAUappBtn()
     });
+
+    it('TC-09 ทดสอบออกจากระบบบริการอาจารย์บนมือถือ **กรณีที่ระบบยังจดจำแอ็กเคานต์ผู้ใช้งาน' , async () => {
+        console.log('แอพเปิดแล้ว');
+        await LoginPage.clickLoginBtn()
+        browser.pause(2000)
+        await LoginPage.enterPin('777777')
+        await browser.pause(2000);
+        await DashboardPage.clickExitAccountBtn()
+        await LoginPage.clickLoginBtn()
+        await LoginPage.enterPin('777777')
+        await DashboardPage.checkDashboardLandingPage()
+    });
 });
