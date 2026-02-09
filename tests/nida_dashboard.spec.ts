@@ -1,6 +1,7 @@
 import DashboardPage from '../pages/DashboardPage.js';
 import LandingPage from '../pages/LandingPage.js';
 import LoginPage from '../pages/LoginPage.js';
+import NIDAAjarnApplicationPage from '../pages/NIDAAjarnApplicationPage.js';
 import NotificationPage from '../pages/NotificationPage.js';
 
 describe('NIDA Mobile App - Dashboard Test', () => {
@@ -230,5 +231,7 @@ describe('NIDA Mobile App - Dashboard Test', () => {
         await LoginPage.clickLoginBtn()
         await LoginPage.enterPin('777777')
         await DashboardPage.clickApplicationByName('NIDA Ajan Nisit','NIDA อาจารย์ นักศึกษา')
+        await NIDAAjarnApplicationPage.checkNIDAAjarnApplicationPage()
+        await NIDAAjarnApplicationPage.checkCalendarPageElements()
     });
 });

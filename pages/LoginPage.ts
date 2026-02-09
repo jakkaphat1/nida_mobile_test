@@ -20,7 +20,7 @@ class LoginPage extends BasePage {
     }
 
     get loginBtn(){
-        return $('//android.widget.Button[@text="Login" or @content-desc="Login"]');
+        return $('//*[@text="Login" or @content-desc="Login" or @text="เข้าสู่ระบบ" or @content-desc="เข้าสู่ระบบ"]');
     }
 
     get AllowAccessAlert(){
