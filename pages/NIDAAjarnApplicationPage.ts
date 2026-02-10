@@ -40,6 +40,10 @@ class NIDAAjarnApplicationPage extends BasePage {
         return $(`//android.view.ViewGroup[@content-desc="${AppointmentName}, ${AppointmentDate}, ${AppointmentTime}"]`)
     }
 
+    getAppointmentLabelButton(AppointmentName: string ){
+        return $(`//android.view.ViewGroup[contains(@content-desc, "${AppointmentName}")]`);
+    }
+
 
     /**
      * Method
@@ -124,6 +128,15 @@ class NIDAAjarnApplicationPage extends BasePage {
         await expect(appointmentLabel).toBeDisplayed({
             message: `ไม่พบกิจกรรมนัดหมาย: ${AppointmentName}, ${AppointmentDate}, ${AppointmentTime} ในหน้าหลัก`
         });
+    }
+
+    async clickAppointmentInHome(AppointmentName: string ){
+        const appointmentLabel = this.getAppointmentLabelButton(AppointmentName);
+        await appointmentLabel.waitForDisplayed({ timeout: 5000 });
+        await expect(appointmentLabel).toBeDisplayed({
+            message: `ไม่พบกิจกรรมนัดหมาย: ${AppointmentName} ในหน้าหลัก`
+        });
+        await appointmentLabel.click();
     }
 }
 export default new NIDAAjarnApplicationPage();

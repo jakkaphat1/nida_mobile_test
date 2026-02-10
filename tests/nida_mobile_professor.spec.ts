@@ -251,7 +251,10 @@ describe('NIDA Mobile App - Dashboard Test', () => {
         await NIDAAjarnApplicationPage.checkCalendarPageElements()
         await NIDAAjarnApplicationPage.selectDateInCalendar(3);
         await NIDAAjarnApplicationPage.checkAppointmentInHome('ทดสอบเพิ่มนัดหมาย' , '02/03/2026' , '10:00 - 17:00')
-    });
+        await NIDAAjarnApplicationPage.clickAppointmentInHome('ทดสอบเพิ่มนัดหมาย')
+        await browser.pause(3000);
+        await NIDAAjarnApplicationPage.clickExitMenuINtodo()
+    }); 
 
     it('TC-07.3 ทดสอบดูกิจกรรมตามปฏิทินการศึกษา' , async () => {
         console.log('แอพเปิดแล้ว');
