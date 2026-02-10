@@ -152,6 +152,16 @@ describe('NIDA Mobile App - Role Student Test', () => {
             await browser.pause(2000)
             await DashboardPage.clickChooseLanguageBox('EN') //กรณีเลือกภาษาอังกฤษ
             await DashboardPage.clickBackBtn()
+
+            const expectedItems = [
+                { en: 'Language', th: 'ตั้งค่าภาษา' },
+                { en: 'Accessibility', th: 'ตั้งค่าการเข้าถึง' },
+                { en: 'Notification', th: 'ตั้งค่าการแจ้งเตือน' },
+                { en: 'Privacy policy', th: 'นโยบายความเป็นส่วนตัว' },
+                { en: 'Terms of use', th: 'เงื่อนไขการใช้งานแอป' },
+                { en: 'Sign out', th: 'ออกจากระบบ' }
+            ];
+            await DashboardPage.verifyMenuAndButtons(expectedItems);
         });
 
     it('TC-03.3 กรณีตั้งค่าการแจ้งเตือน' , async () => {
@@ -164,6 +174,16 @@ describe('NIDA Mobile App - Role Student Test', () => {
             await DashboardPage.checkSubNotificationWorkByName(['Notification via Message','Notification via Email'])
             await DashboardPage.setToggleState('Notification via Message', true); // หรือ Notification via Email
             await DashboardPage.clickBackBtn()
+
+            const expectedItems = [
+                { en: 'Language', th: 'ตั้งค่าภาษา' },
+                { en: 'Accessibility', th: 'ตั้งค่าการเข้าถึง' },
+                { en: 'Notification', th: 'ตั้งค่าการแจ้งเตือน' },
+                { en: 'Privacy policy', th: 'นโยบายความเป็นส่วนตัว' },
+                { en: 'Terms of use', th: 'เงื่อนไขการใช้งานแอป' },
+                { en: 'Sign out', th: 'ออกจากระบบ' }
+            ];
+            await DashboardPage.verifyMenuAndButtons(expectedItems);
     });
 
 
