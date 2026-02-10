@@ -1,4 +1,8 @@
 import BasePage from './BasePage.js';
+import { exec } from 'child_process';
+import util from 'util';
+const execPromise = util.promisify(exec);
+import webdriver from 'appium';
 
 class LoginPage extends BasePage {
 
@@ -124,8 +128,28 @@ class LoginPage extends BasePage {
         
     }
 
-    
-    
+    async handleBiometricPopup() {
+        try {
+            console.log('🔐 Handling biometric authentication...');
+            
+            // รอให้ fingerprint dialog แสดง
+            await browser.pause(3000);
+            
+            console.log('📱 Sending fingerprint authentication...');
+            
+            // ใช้ driver.fingerPrint() - ไม่ต้อง adb_shell
+            await driver.execute('mobile: fingerprint', { fingerprintId: 3 });
+            
+            console.log(`✅ Fingerprint authenticated`);
+            await browser.pause(2000);
+            
+            console.log('✅ Biometric authentication completed');
+            
+        } catch (error) {
+            console.error('❌ Fingerprint failed:', error);
+            throw error;
+        }
+    }
 
 
 

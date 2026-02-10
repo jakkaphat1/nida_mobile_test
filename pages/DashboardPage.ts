@@ -133,6 +133,13 @@ class DashboardPage extends BasePage {
         return $('//android.view.ViewGroup[contains(@content-desc, "คุณแน่ใจว่าต้องการ")]');
     }
 
+    get fingerprintWording(){
+        return $('//android.widget.TextView[@text="Fingerprint scan" or @text="สแกนลายนิ้วมือ"]')
+    }
+
+    get fingerprintToggle() {
+        return $('//android.widget.TextView[@text="Fingerprint scan" or @text="สแกนลายนิ้วมือ"]/../android.view.ViewGroup[@clickable="true"]');
+    }
 
     /**
      * Method
@@ -375,6 +382,43 @@ class DashboardPage extends BasePage {
         await this.signOutPopupText.waitForDisplayed({ timeout: 5000 });
         await this.confirmSignOutButton.click();
     }
+
+    // async clickFingerprintToggle(){
+    //     await this.fingerprintToggle.click()
+    // }
+    async clickFingerprintToggle() {
+    try {
+        const toggle = await this.fingerprintToggle;
+        
+        // Debug: แสดงข้อมูล element ก่อนคลิก
+        const isDisplayed = await toggle.isDisplayed();
+        const isClickable = await toggle.getAttribute('clickable');
+        const bounds = await toggle.getAttribute('bounds');
+        
+        console.log('🔍 Toggle Debug Info:');
+        console.log('  - Displayed:', isDisplayed);
+        console.log('  - Clickable:', isClickable);
+        console.log('  - Bounds:', bounds);
+        
+        // ตรวจสอบว่า clickable หรือไม่
+        if (isClickable !== 'true') {
+            console.warn('⚠️ Warning: Toggle is not clickable!');
+        }
+        
+        // รอให้ element พร้อม แล้วคลิก
+        await toggle.waitForDisplayed({ timeout: 5000 });
+        await toggle.click();
+        
+        console.log('✅ Toggle clicked successfully');
+        
+        // รอสักครู่ให้ animation เสร็จ
+        await driver.pause(500);
+        
+    } catch (error) {
+        console.error('❌ Error clicking fingerprint toggle:', error);
+        throw error;
+    }
+}
 }
 
 export default new DashboardPage();

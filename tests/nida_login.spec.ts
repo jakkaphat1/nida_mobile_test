@@ -35,7 +35,7 @@ describe('NIDA Mobile App - Login Test', () => {
         // await LoginPage.loginFullProcess('chandra-nuj@nida.ac.th', 'unext@2022','777777');
         await LoginPage.clickLoginBtn()
         await LoginPage.enterPin('777777')
-        await LoginPage.clickProfessorProfile();
+        await DashboardPage.clickProfessorProfile();
 
         const expectedItems = [
             'Language',         

@@ -18,7 +18,9 @@ export const config = {
         'appium:noReset': true,              
         'appium:dontTerminateApp': true,           
         'appium:shouldTerminateApp': false,
-        'appium:enforceXPath1': true
+        'appium:enforceXPath1': true,
+        'appium:allowInvisibleElements': true,
+        'appium:allowInsecure': ['uiautomator2:adb_shell'],
 
     }],
 
