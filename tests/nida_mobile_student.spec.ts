@@ -154,9 +154,17 @@ describe('NIDA Mobile App - Role Student Test', () => {
             await DashboardPage.clickBackBtn()
         });
 
+    it('TC-03.3 กรณีตั้งค่าการแจ้งเตือน' , async () => {
+            console.log('แอพเปิดแล้ว');
+            await LoginPage.clickLoginBtn()
+            await LoginPage.enterPin('777777')
+            await DashboardPage.clickProfile();
+            await DashboardPage.clickNotificationBtn()   
 
-
-
+            await DashboardPage.checkSubNotificationWorkByName(['Notification via Message','Notification via Email'])
+            await DashboardPage.setToggleState('Notification via Message', true); // หรือ Notification via Email
+            await DashboardPage.clickBackBtn()
+    });
 
 
 
