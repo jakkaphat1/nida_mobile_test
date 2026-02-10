@@ -28,6 +28,7 @@ describe('NIDA Mobile App - Role Student Test', () => {
                 console.log('ไม่มี Popup ขึ้น'); 
             }
             console.log('กำลังตั้งค่า PIN');
+            await LoginPage.clickLoginBtn();
             await LoginPage.enterPin('777777');  
             await LoginPage.enterPin2('777777');  
             
@@ -36,8 +37,12 @@ describe('NIDA Mobile App - Role Student Test', () => {
             await DashboardPage.clickProfessorProfile();
     
             const expectedItems = [
-                'Language', 'Accessibility', 'Notification', 
-                'Privacy policy', 'Terms of use', 'Sign out'
+                { en: 'Language', th: 'ตั้งค่าภาษา' },
+                { en: 'Accessibility', th: 'ตั้งค่าการเข้าถึง' },
+                { en: 'Notification', th: 'ตั้งค่าการแจ้งเตือน' },
+                { en: 'Privacy policy', th: 'นโยบายความเป็นส่วนตัว' },
+                { en: 'Terms of use', th: 'เงื่อนไขการใช้งานแอป' },
+                { en: 'Sign out', th: 'ออกจากระบบ' }
             ];
             await DashboardPage.verifyMenuAndButtons(expectedItems);
     

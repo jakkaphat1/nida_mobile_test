@@ -7,16 +7,16 @@ import webdriver from 'appium';
 class LoginPage extends BasePage {
 
     get inputUsername() {
-        return $('//android.widget.EditText[@hint="Username"]');
+        return $('//android.widget.EditText[@hint="Username" or @hint="บัญชีผู้ใช้งาน"]');
     }
 
     get inputPassword() {
-        return $('//android.widget.EditText[@hint="Password"]');
+        return $('//android.widget.EditText[@hint="Password" or @hint="รหัสผ่าน"]');
     }
 
     get btnLogin() {
         // ใช้ text ของปุ่ม
-        return $('//android.widget.Button[@text="Login"]');
+        return $('//android.widget.Button[@text="Login" or @text="เข้าสู่ระบบ"]');
     }
 
     get btnShowPassword() {
@@ -24,7 +24,7 @@ class LoginPage extends BasePage {
     }
 
     get loginBtn(){
-        return $('//*[@text="Login" or @content-desc="Login" or @text="เข้าสู่ระบบ" or @content-desc="เข้าสู่ระบบ"]');
+        return $('//*[@text="Login" or @content-desc="Login" or @text="เข้าสู่ระบบ" or @content-desc="เข้าสู่ระบบ" or @text="ตกลง" or @content-desc="ตกลง"]');
     }
 
     get AllowAccessAlert(){
@@ -32,7 +32,7 @@ class LoginPage extends BasePage {
     }
 
     get OKButton(){
-        return $('//android.widget.TextView[@text="OK"]')
+        return $('//android.widget.TextView[@text="OK" or @text="ตกลง"]')
     }
 
     get FingerprintInAllowAccessButton(){

@@ -14,8 +14,9 @@ class DashboardPage extends BasePage {
         return $(`//android.widget.TextView[@text="${profileName}"]`)
     }
 
-    getDynamicElement(label: string) {
-        return $(`//*[@text="${label}" or @content-desc="${label}"]`);
+    getDynamicElement(textEn: string, textTh: string) {
+        // return $(`//*[@text="${label}" or @content-desc="${label}"]`);
+        return $(`//*[contains(@text, "${textEn}") or contains(@text, "${textTh}") or contains(@content-desc, "${textEn}") or contains(@content-desc, "${textTh}")]`);
     }
 
     get personalInfoContainer() {
@@ -149,9 +150,9 @@ class DashboardPage extends BasePage {
      * Method
      */
 
-    async verifyMenuAndButtons(itemsList: string[]) {
+    async verifyMenuAndButtons(itemsList: { en: string, th: string }[]){
         for (const item of itemsList) {
-            const element = this.getDynamicElement(item);
+            const element = this.getDynamicElement(item.en , item.th);
 
             await element.waitForDisplayed({ timeout: 5000 });
             await expect(element).toBeDisplayed();
@@ -160,9 +161,9 @@ class DashboardPage extends BasePage {
         }
     }
 
-    async clickElementByText(ElementName : string){
-        await this.getDynamicElement(ElementName).click()
-    }
+    // async clickElementByText(ElementName : string){
+    //     await this.getDynamicElement(ElementName).click()
+    // }
 
     async verifyPersonalInfoData(expectedDataList: string[]) {
         await this.personalInfoContainer.waitForDisplayed({ timeout: 5000 });
