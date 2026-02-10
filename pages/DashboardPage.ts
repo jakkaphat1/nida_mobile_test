@@ -174,6 +174,9 @@ class DashboardPage extends BasePage {
         return $(`//android.widget.CheckBox[@content-desc="${selectLanguage}"]`)
     }
 
+    getPrivacyTextElement(keyword: string) {
+        return $(`//android.widget.TextView[contains(@text, "${keyword}")]`);
+    }
 
     /**
      * Method
@@ -494,6 +497,26 @@ class DashboardPage extends BasePage {
     async clickChooseLanguageBox(selectLanguage : string){
         await this.getChooseLanguageBox(selectLanguage).click()
     }
+
+    async verifyPrivacyPolicyContent(expectedFullText: string) {
+        //ตัดเอาแค่ 20 ตัวอักษรแรกของข้อความที่คาดหวัง ไปใช้หา Element
+        const searchKeyword = expectedFullText.replace(/\s+/g, '').substring(0, 15);
+        const element = this.getPrivacyTextElement(searchKeyword);
+
+        await element.waitForDisplayed({ timeout: 5000 });
+
+        const actualText = await element.getText();
+
+        // ลบช่องว่าง และการขึ้นบรรทัดใหม่ ออกให้หมด เพื่อเทียบเนื้อหา
+        const cleanActual = actualText.replace(/\s+/g, '');
+        const cleanExpected = expectedFullText.replace(/\s+/g, '');
+
+        console.log('Actual (Clean):', cleanActual);
+        console.log('Expected (Clean):', cleanExpected);
+
+        await expect(cleanActual).toContain(cleanExpected);
+    }
+
 }
 
 export default new DashboardPage();
