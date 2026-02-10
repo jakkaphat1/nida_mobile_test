@@ -35,9 +35,13 @@ class LoginPage extends BasePage {
         return $('//android.widget.TextView[@text="OK"]')
     }
 
+    get FingerprintInAllowAccessButton(){
+        return $('//android.view.ViewGroup[@content-desc="Fingerprint scan" or @content-desc="สแกนลายนิ้วมือ"]');
+    }
+
     get OKButtonOnAllowAccessAlert() {
     // ใช้ XPath ที่ระบุว่า TextView ที่มีคำว่า OK และอยู่ภายใต้ ViewGroup ของ Modal
-    return $('//android.view.ViewGroup[@content-desc="Allow access, PIN"]//android.widget.TextView[@text="OK"]');
+    return $('//android.view.ViewGroup[@content-desc="Allow access, PIN"]//android.widget.TextView[@text="OK" or @text="ตกลง"]');
 }
 
     get SecondPagePin(){
@@ -151,7 +155,9 @@ class LoginPage extends BasePage {
         }
     }
 
-
+    async clickFingerprintInAllowAccessBth(){
+        await this.FingerprintInAllowAccessButton.click()
+    }
 
 }
 

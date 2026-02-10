@@ -11,4 +11,35 @@ describe('NIDA Mobile App - Role Student Test', () => {
         await driver.terminateApp('th.ac.nida.superapp'); 
         await driver.activateApp('th.ac.nida.superapp');
     });
+
+    it('TC-01 ตรวจสอบ Dashboard และ Profile (บนเครื่องใหม่)', async () => {
+            console.log('--- เริ่มต้น Test บนเครื่องใหม่ ---');
+    
+            await LoginPage.clickLoginBtn();
+    
+            console.log('กำลังกรอก Username/Password...');
+            await LoginPage.login('6810451023100@stu.nida.ac.th', 'unext@2022');
+            await LoginPage.clickLoginBtn();
+    
+            try {
+                await LoginPage.clickFingerprintInAllowAccessBth();
+                await LoginPage.clickOKinAllowAccessContent();
+            } catch (e) { 
+                console.log('ไม่มี Popup ขึ้น'); 
+            }
+            console.log('กำลังตั้งค่า PIN');
+            await LoginPage.enterPin('777777');  
+            await LoginPage.enterPin2('777777');  
+            
+            await browser.pause(3000); 
+    
+            await DashboardPage.clickProfessorProfile();
+    
+            const expectedItems = [
+                'Language', 'Accessibility', 'Notification', 
+                'Privacy policy', 'Terms of use', 'Sign out'
+            ];
+            await DashboardPage.verifyMenuAndButtons(expectedItems);
+    
+        });
 });
