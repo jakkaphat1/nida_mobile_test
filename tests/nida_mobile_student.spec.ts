@@ -47,7 +47,7 @@ describe('NIDA Mobile App - Role Student Test', () => {
     
         });
 
-    it('TC-02 ทดสอบดูข้อมูลโปรไฟล์นักศึกษา', async () => {
+    it('TC-02.1 ทดสอบดูข้อมูลโปรไฟล์นักศึกษา', async () => {
         console.log('--- เริ่มต้น Test บนเครื่องใหม่ ---');
     
         await LoginPage.clickLoginBtn();
