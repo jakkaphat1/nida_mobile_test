@@ -24,8 +24,12 @@ class DashboardPage extends BasePage {
     }
 
     get personalInfoContainer() {
-        return $('//android.view.ViewGroup[contains(@content-desc, "Personal Info")]');
+        return $('//android.view.ViewGroup[contains(@content-desc, "Personal Info") or contains(@content-desc, "ข้อมูลส่วนตัว")]');
     }
+
+    get addressInfoContainer() {
+        return $('//android.view.ViewGroup[contains(@content-desc, "Address Info") or contains(@content-desc, "ที่อยู่ตามทะเบียนบ้าน")]');
+    }    
 
     get BackButton(){
         return $('//android.widget.TextView[@resource-id="RNE__ICON__Component"]')
@@ -150,6 +154,9 @@ class DashboardPage extends BasePage {
         return $('//android.widget.TextView[@text="NIDA Ajan Nisit" or @text="NIDA อาจารย์ นักศึกษา"]/../android.view.ViewGroup[1]')
     }
 
+    get viewProfileButton(){
+        return $('//android.view.ViewGroup[@content-desc="VIEW PROFILE" or @content-desc="ดูโปรไฟล์"]')
+    }
     /**
      * Method
      */
@@ -165,8 +172,15 @@ class DashboardPage extends BasePage {
         }
     }
 
-    async clickElementByText(ElementName : string){
-        await this.getDynamicElmentByLabel(ElementName).click()
+    async clickElementByText(itemsList: { elementEN: string, elementTH: string }[]){
+        for (const item of itemsList) {
+            const element = this.getDynamicElement(item.elementEN , item.elementTH);
+            await element.waitForDisplayed({ timeout: 5000 });
+            await expect(element).toBeDisplayed();
+            console.log(`ตรวจสอบพบ: "${item}"`);
+        }
+
+        // await this.getDynamicElmentByLabel(ElementName, ElementThaiName).click()
     }
 
     async verifyPersonalInfoData(expectedDataList: string[]) {
@@ -187,6 +201,20 @@ class DashboardPage extends BasePage {
         await this.personalInfoContainer.waitForDisplayed({ timeout: 5000 });
 
         const fullContentDesc = await this.personalInfoContainer.getAttribute('content-desc');
+        
+        console.log('ข้อมูลจริงที่ดึงได้:', fullContentDesc);
+
+        for (const data of expectedDataList) {
+            await expect(fullContentDesc).toContain(data);
+            
+            console.log(`พบข้อมูล: "${data}" ถูกต้อง`);
+        }
+    }
+
+    async verifyAddressInfoData(expectedDataList: string[]) {
+        await this.addressInfoContainer.waitForDisplayed({ timeout: 5000 });
+
+        const fullContentDesc = await this.addressInfoContainer.getAttribute('content-desc');
         
         console.log('ข้อมูลจริงที่ดึงได้:', fullContentDesc);
 
@@ -396,38 +424,42 @@ class DashboardPage extends BasePage {
     //     await this.fingerprintToggle.click()
     // }
     async clickFingerprintToggle() {
-    try {
-        const toggle = await this.fingerprintToggle;
-        
-        // Debug: แสดงข้อมูล element ก่อนคลิก
-        const isDisplayed = await toggle.isDisplayed();
-        const isClickable = await toggle.getAttribute('clickable');
-        const bounds = await toggle.getAttribute('bounds');
-        
-        console.log('🔍 Toggle Debug Info:');
-        console.log('  - Displayed:', isDisplayed);
-        console.log('  - Clickable:', isClickable);
-        console.log('  - Bounds:', bounds);
-        
-        // ตรวจสอบว่า clickable หรือไม่
-        if (isClickable !== 'true') {
-            console.warn('⚠️ Warning: Toggle is not clickable!');
+        try {
+            const toggle = await this.fingerprintToggle;
+            
+            // Debug: แสดงข้อมูล element ก่อนคลิก
+            const isDisplayed = await toggle.isDisplayed();
+            const isClickable = await toggle.getAttribute('clickable');
+            const bounds = await toggle.getAttribute('bounds');
+            
+            console.log('🔍 Toggle Debug Info:');
+            console.log('  - Displayed:', isDisplayed);
+            console.log('  - Clickable:', isClickable);
+            console.log('  - Bounds:', bounds);
+            
+            // ตรวจสอบว่า clickable หรือไม่
+            if (isClickable !== 'true') {
+                console.warn('⚠️ Warning: Toggle is not clickable!');
+            }
+            
+            // รอให้ element พร้อม แล้วคลิก
+            await toggle.waitForDisplayed({ timeout: 5000 });
+            await toggle.click();
+            
+            console.log('✅ Toggle clicked successfully');
+            
+            // รอสักครู่ให้ animation เสร็จ
+            await driver.pause(500);
+            
+        } catch (error) {
+            console.error('❌ Error clicking fingerprint toggle:', error);
+            throw error;
         }
-        
-        // รอให้ element พร้อม แล้วคลิก
-        await toggle.waitForDisplayed({ timeout: 5000 });
-        await toggle.click();
-        
-        console.log('✅ Toggle clicked successfully');
-        
-        // รอสักครู่ให้ animation เสร็จ
-        await driver.pause(500);
-        
-    } catch (error) {
-        console.error('❌ Error clicking fingerprint toggle:', error);
-        throw error;
     }
-}
+
+    async clickviewProfileBtn(){
+        await this.viewProfileButton.click()
+    }
 }
 
 export default new DashboardPage();

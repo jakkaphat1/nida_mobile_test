@@ -62,7 +62,10 @@ describe('NIDA Mobile App - Dashboard Test', () => {
             ];
         await DashboardPage.verifyMenuAndButtons(expectedItems);
 
-        await DashboardPage.clickElementByText('VIEW PROFILE')
+        const expectedProfileItems = [
+                { elementEN: 'VIEW PROFILE', elementTH: 'ดูโปรไฟล์' },
+            ];
+        await DashboardPage.clickElementByText(expectedProfileItems);
 
         const myPersonalInfo = [
             'Chandra-nuj',          // เช็คชื่อ

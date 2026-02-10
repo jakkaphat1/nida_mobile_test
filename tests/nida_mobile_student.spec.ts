@@ -66,6 +66,55 @@ describe('NIDA Mobile App - Role Student Test', () => {
             { en: 'Sign out', th: 'ออกจากระบบ' }
         ];
         await DashboardPage.verifyMenuAndButtons(expectedItems);
-    
-        });
+        console.log('ตรวจสอบเมนูโปรไฟล์')
+
+        const expectedProfileItems = [
+            { elementEN: 'VIEW PROFILE', elementTH: 'ดูโปรไฟล์' },
+        ];
+        await DashboardPage.clickviewProfileBtn()
+        console.log('กดปุ่ม ดูโปรไฟล์ แล้ว')
+        const myPersonalInfo = [
+                'มนุด',          // เช็คชื่อ
+                'ทดสอบ',          // เช็คนามสกุล
+                'xxxxxxxxx8644',        // เช็คเลขบัตร (บางส่วน)
+                '2000-08-31',           // เช็ควันเกิด
+            ];
+
+        await DashboardPage.verifyPersonalInfoData(myPersonalInfo);
+        console.log('ตรวจสอบข้อมูลส่วนตัว : ', myPersonalInfo)    
+        const myContactsInfo = [
+                '-',
+                '-'
+            ]
+        await DashboardPage.verifyContactInfoData(myContactsInfo)
+        console.log('ตรวจสอบข้อมูลการติดต่อ : ', myContactsInfo)
+
+        const myAddressInfo = [
+            '',
+            '',
+            '',
+            '',
+            '',
+        ]
+
+        await DashboardPage.verifyAddressInfoData(myAddressInfo);
+        console.log('ตรวจสอบข้อมูลที่อยู่ตามทะเบียนบ้าน : ', myAddressInfo)
+
+        await DashboardPage.clickBackBtn()
+        await DashboardPage.verifyMenuAndButtons(expectedItems);    
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 });
