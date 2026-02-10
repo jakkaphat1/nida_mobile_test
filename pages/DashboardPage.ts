@@ -157,6 +157,18 @@ class DashboardPage extends BasePage {
     get viewProfileButton(){
         return $('//android.view.ViewGroup[@content-desc="VIEW PROFILE" or @content-desc="ดูโปรไฟล์"]')
     }
+
+    getEditInfoButton(index: number){
+        return $(`(//android.widget.TextView[@text="แก้ไข" or @text="Edit"])[${index}]`)
+    }
+
+    get EditProfilePopup(){
+        return $(`//android.view.ViewGroup[@content-desc="กรุณาส่งคำร้องเพื่อขอแก้ไขข้อมูลทะเบียนประวัตินักศึกษา, สามารถส่งคำร้องเพื่อขอแก้ไขข้อมูลทะเบียนประวัตินิสิต ที่เมนูคำร้องนิสิต" or @content-desc="Please submit a request to amend student registration information., You can submit a request to amend student registration information. At the student request menu."]/android.view.ViewGroup`)
+    }
+
+    get EditProfilePopupConfirmButton(){
+        return $('//android.widget.Button[@content-desc="ยืนยัน" or @content-desc="Confirm"]')
+    }
     /**
      * Method
      */
@@ -459,6 +471,18 @@ class DashboardPage extends BasePage {
 
     async clickviewProfileBtn(){
         await this.viewProfileButton.click()
+    }
+
+    async editInfoBtnByIndex(index:number){
+        await this.getEditInfoButton(index).click()
+    }
+
+    async checkEditProfilePopup(){
+        await this.EditProfilePopup.waitForDisplayed({ timeout : 3000});
+    }
+
+    async clickEditProfilePopupConfirmBtn(){
+        await this.EditProfilePopupConfirmButton.click()
     }
 }
 

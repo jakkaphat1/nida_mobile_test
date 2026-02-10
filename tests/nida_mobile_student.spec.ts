@@ -104,8 +104,43 @@ describe('NIDA Mobile App - Role Student Test', () => {
         await DashboardPage.verifyMenuAndButtons(expectedItems);    
     });
 
+    it('TC-02.2 ทดสอบแก้ไขข้อมูล', async () => {
+        console.log('--- เริ่มต้น Test บนเครื่องใหม่ ---');
+    
+        await LoginPage.clickLoginBtn();
+        await LoginPage.enterPin2('777777');  
+            
+        await browser.pause(3000); 
+        await DashboardPage.clickProfessorProfile();
 
+        const expectedItems = [
+            { en: 'Language', th: 'ตั้งค่าภาษา' },
+            { en: 'Accessibility', th: 'ตั้งค่าการเข้าถึง' },
+            { en: 'Notification', th: 'ตั้งค่าการแจ้งเตือน' },
+            { en: 'Privacy policy', th: 'นโยบายความเป็นส่วนตัว' },
+            { en: 'Terms of use', th: 'เงื่อนไขการใช้งานแอป' },
+            { en: 'Sign out', th: 'ออกจากระบบ' }
+        ];
+        await DashboardPage.verifyMenuAndButtons(expectedItems);
+        console.log('ตรวจสอบเมนูโปรไฟล์')
 
+        const expectedProfileItems = [
+            { elementEN: 'VIEW PROFILE', elementTH: 'ดูโปรไฟล์' },
+        ];
+        await DashboardPage.clickviewProfileBtn()
+        console.log('กดปุ่ม ดูโปรไฟล์ แล้ว')
+
+        const InfoIndexToEdit = {
+            profile: 1,
+            contact: 2,
+            address: 3
+        }
+        await DashboardPage.editInfoBtnByIndex(InfoIndexToEdit.profile)
+        await DashboardPage.checkEditProfilePopup()
+        await DashboardPage.clickEditProfilePopupConfirmBtn()
+        await browser.pause(5000);
+        await DashboardPage.clickBackBtn()
+    });
 
 
 
