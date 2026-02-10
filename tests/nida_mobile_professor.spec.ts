@@ -8,6 +8,7 @@ describe('NIDA Mobile App - Dashboard Test', () => {
 
     beforeEach(async () => {
         await driver.terminateApp('th.ac.nida.superapp'); 
+        await browser.pause(2000);
         await driver.activateApp('th.ac.nida.superapp');
     });
 
@@ -239,14 +240,18 @@ describe('NIDA Mobile App - Dashboard Test', () => {
         await NIDAAjarnApplicationPage.checkCalendarPageElements()
     });
 
-    // it('TC-07.2 ทดสอบดูกิจกรรมต่าง ๆ จากปฏิทิน' , async () => {
-    //     console.log('แอพเปิดแล้ว');
-    //     await LoginPage.clickLoginBtn()
-    //     await LoginPage.enterPin('777777')
-    //     await DashboardPage.clickApplicationByName('NIDA Ajan Nisit','NIDA อาจารย์ นักศึกษา')
-    //     await NIDAAjarnApplicationPage.checkNIDAAjarnApplicationPage()
-    //     await NIDAAjarnApplicationPage.checkCalendarPageElements()
-    // });
+    it('TC-07.2 ทดสอบดูกิจกรรมต่าง ๆ จากปฏิทิน' , async () => {
+        console.log('แอพเปิดแล้ว');
+        await LoginPage.clickLoginBtn()
+        await browser.pause(1000);
+        await LoginPage.enterPin('777777')
+        // await DashboardPage.clickApplicationByName('NIDA Ajan Nisit','NIDA อาจารย์ นักศึกษา')
+        await DashboardPage.NIDAAjarnAppIcon.click()
+        await NIDAAjarnApplicationPage.checkNIDAAjarnApplicationPage()
+        await NIDAAjarnApplicationPage.checkCalendarPageElements()
+        await NIDAAjarnApplicationPage.selectDateInCalendar(3);
+        await NIDAAjarnApplicationPage.checkAppointmentInHome('ทดสอบเพิ่มนัดหมาย' , '02/03/2026' , '10:00 - 17:00')
+    });
 
     it('TC-07.3 ทดสอบดูกิจกรรมตามปฏิทินการศึกษา' , async () => {
         console.log('แอพเปิดแล้ว');

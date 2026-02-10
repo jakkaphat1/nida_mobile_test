@@ -21,11 +21,11 @@ class NIDAAjarnApplicationPage extends BasePage {
     }
 
     get filterAppointment() {
-        return $('//android.view.ViewGroup[@content-desc="Appointment" @or content-desc="กิจกรรมนัดหมาย"]');
+        return $('//android.view.ViewGroup[@content-desc="Appointment" or @content-desc="กิจกรรมนัดหมาย"]');
     }
     
     get filterAcademic() {
-        return $('//android.view.ViewGroup[@content-desc="Academic" @or content-desc="กิจกรรมมหาลัย"]');
+        return $('//android.view.ViewGroup[@content-desc="Academic" or @content-desc="กิจกรรมมหาลัย"]');
     }
 
     getMenuINtodo(menuName:string){
@@ -36,6 +36,9 @@ class NIDAAjarnApplicationPage extends BasePage {
         return $('//android.widget.TextView[@resource-id="RNE__ICON__Component" and @text=""]')
     }
 
+    getAppointmentLabel(AppointmentName: string , AppointmentDate : string , AppointmentTime : string) {
+        return $(`//android.view.ViewGroup[@content-desc="${AppointmentName}, ${AppointmentDate}, ${AppointmentTime}"]`)
+    }
 
 
     /**
@@ -90,6 +93,46 @@ class NIDAAjarnApplicationPage extends BasePage {
     async clickExitMenuINtodo(){
         await this.exitMenuINtodo.click()
     }
-}
 
+    async selectDateInCalendar(day?: number) {
+        // 1. สร้าง Date Object ของวันที่ต้องการ
+        const targetDate = new Date();
+        if (day) {
+            targetDate.setDate(day); // กำหนดวันที่ตามที่ส่งมา
+        }
+
+        // 2. แปลงเป็น Format: "Tuesday 3 February 2026"
+        // ใช้ Intl.DateTimeFormat เพื่อให้ได้ Format ที่เป๊ะ (en-GB จะเรียง วัน เดือน ปี)
+        const dateString = new Intl.DateTimeFormat('en-GB', { 
+            weekday: 'long', 
+            day: 'numeric', 
+            month: 'long', 
+            year: 'numeric' 
+        }).format(targetDate);
+
+        // Note: บางที Intl อาจจะใส่ comma (,) มา ให้ลบออกถ้าแอพไม่มี
+        // ตัวอย่างผลลัพธ์: "Tuesday 3 February 2026"
+        const formattedDate = dateString.replace(',', ''); 
+
+        console.log(`📅 กำลังจะคลิกวันที่: ${formattedDate}`);
+
+        // 3. สร้าง XPath แบบ Dynamic
+        // ใช้ contains() เพื่อหาแค่ "Tuesday 3 February 2026" 
+        // โดยไม่สนข้อความข้างหลัง (selected, You have no entries...)
+        const dateSelector = `//android.widget.Button[contains(@content-desc, "${formattedDate}")]`;
+
+        // 4. รอและกด
+        const dateEl = $(dateSelector);
+        await dateEl.waitForDisplayed({ timeout: 5000 });
+        await dateEl.click();
+    }
+
+    async checkAppointmentInHome(AppointmentName: string , AppointmentDate : string , AppointmentTime : string){
+        const appointmentLabel = this.getAppointmentLabel(AppointmentName, AppointmentDate, AppointmentTime);
+        await appointmentLabel.waitForDisplayed({ timeout: 5000 });
+        await expect(appointmentLabel).toBeDisplayed({
+            message: `ไม่พบกิจกรรมนัดหมาย: ${AppointmentName}, ${AppointmentDate}, ${AppointmentTime} ในหน้าหลัก`
+        });
+    }
+}
 export default new NIDAAjarnApplicationPage();

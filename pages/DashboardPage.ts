@@ -141,6 +141,10 @@ class DashboardPage extends BasePage {
         return $('//android.widget.TextView[@text="Fingerprint scan" or @text="สแกนลายนิ้วมือ"]/../android.view.ViewGroup[@clickable="true"]');
     }
 
+    get NIDAAjarnAppIcon(){
+        return $('//android.widget.TextView[@text="NIDA Ajan Nisit" or @text="NIDA อาจารย์ นักศึกษา"]/../android.view.ViewGroup[1]')
+    }
+
     /**
      * Method
      */
