@@ -169,6 +169,12 @@ class DashboardPage extends BasePage {
     get EditProfilePopupConfirmButton(){
         return $('//android.widget.Button[@content-desc="ยืนยัน" or @content-desc="Confirm"]')
     }
+
+    getChooseLanguageBox(selectLanguage : string){
+        return $(`//android.widget.CheckBox[@content-desc="${selectLanguage}"]`)
+    }
+
+
     /**
      * Method
      */
@@ -370,7 +376,7 @@ class DashboardPage extends BasePage {
         console.log('Working/Menu button is displayed');
     }
 
-    async clickProfessorProfile(){
+    async clickProfile(){
         await this.professorProfile.click()
     }
 
@@ -483,6 +489,10 @@ class DashboardPage extends BasePage {
 
     async clickEditProfilePopupConfirmBtn(){
         await this.EditProfilePopupConfirmButton.click()
+    }
+
+    async clickChooseLanguageBox(selectLanguage : string){
+        await this.getChooseLanguageBox(selectLanguage).click()
     }
 }
 

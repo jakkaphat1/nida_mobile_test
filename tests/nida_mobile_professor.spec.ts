@@ -32,7 +32,7 @@ describe('NIDA Mobile App - Dashboard Test', () => {
         
         await browser.pause(3000); 
 
-        // await DashboardPage.clickProfessorProfile();
+        // await DashboardPage.clickProfile();
     
             // const expectedItems = [
             //     { en: 'Language', th: 'ตั้งค่าภาษา' },
@@ -50,7 +50,7 @@ describe('NIDA Mobile App - Dashboard Test', () => {
         console.log('แอพเปิดแล้ว');
         await LoginPage.clickLoginBtn()
         await LoginPage.enterPin('777777')
-        await DashboardPage.clickProfessorProfile();
+        await DashboardPage.clickProfile();
 
         const expectedItems = [
                 { en: 'Language', th: 'ตั้งค่าภาษา' },
@@ -89,7 +89,7 @@ describe('NIDA Mobile App - Dashboard Test', () => {
         console.log('แอพเปิดแล้ว');
         await LoginPage.clickLoginBtn()
         await LoginPage.enterPin('777777')
-        await DashboardPage.clickProfessorProfile();
+        await DashboardPage.clickProfile();
         await DashboardPage.clickLanguageBtn()
         await DashboardPage.clickBackBtn()
     });
@@ -99,7 +99,7 @@ describe('NIDA Mobile App - Dashboard Test', () => {
     //     // await LoginPage.clickLoginBtn()
     //     // await LoginPage.enterPin('777777')
     //     await LoginPage.handleBiometricPopup()
-    //     // await DashboardPage.clickProfessorProfile();
+    //     // await DashboardPage.clickProfile();
     //     // await DashboardPage.clickAccessbilityBtn()
     //     // console.log('เข้าหน้าตั้งค่าการเข้าถึง')
     //     // await DashboardPage.clickFingerprintToggle()
@@ -111,7 +111,7 @@ describe('NIDA Mobile App - Dashboard Test', () => {
         console.log('แอพเปิดแล้ว');
         await LoginPage.clickLoginBtn()
         await LoginPage.enterPin('777777')
-        await DashboardPage.clickProfessorProfile();
+        await DashboardPage.clickProfile();
         await DashboardPage.clickNotificationBtn()
 
         const expectedNotificationsTH = [
@@ -147,7 +147,7 @@ describe('NIDA Mobile App - Dashboard Test', () => {
         console.log('แอพเปิดแล้ว');
         await LoginPage.clickLoginBtn()
         await LoginPage.enterPin('777777')
-        await DashboardPage.clickProfessorProfile();
+        await DashboardPage.clickProfile();
         await DashboardPage.clickPrivacyBtn()
         await DashboardPage.clickBackBtn()
     });
@@ -156,7 +156,7 @@ describe('NIDA Mobile App - Dashboard Test', () => {
         console.log('แอพเปิดแล้ว');
         await LoginPage.clickLoginBtn()
         await LoginPage.enterPin('777777')
-        await DashboardPage.clickProfessorProfile();
+        await DashboardPage.clickProfile();
         await DashboardPage.clickTermOFUseBtn()
         await DashboardPage.checkTermOfUse('สิทธิในการได้รับแจ้ง จะมีการแจ้ง “ประกาศเกี่ยวกับความเป็นส่วนตัว (Privacy Notice)” ที่มีรายละเอียดวัตถุประสงค์ในการเก็บรวบรวม ใช้ และเปิดเผยข้อมูลส่วนบุคคลที่ชัดเจนสิทธิในการเพิกถอนความยินยอม ท่านสามารถขอเพิกถอนความยินยอมที่เคยให้สถาบันไว้ได้ทุกเมื่อ ทั้งนี้ไม่ส่งผลกระทบต่อการเก็บรวบรวม ใช้หรือเปิดเผยข้อมูลส่วนบุคคลที่ท่านได้ให้ความ ยินยอมไปแล้วโดยชอบ เฉพาะสำหรับข้อมูลส่วนบุคคลที่ได้เก็บรวบรวม ใช้')
         await DashboardPage.clickBackBtn()
@@ -326,7 +326,7 @@ describe('NIDA Mobile App - Dashboard Test', () => {
         await LoginPage.enterPin('777777')
         await browser.pause(2000);
         await DashboardPage.checkDashboardLandingPage()
-        await DashboardPage.clickProfessorProfile()
+        await DashboardPage.clickProfile()
         await DashboardPage.clickSignOutAccountBtn()
         await DashboardPage.clickConfirmSignOut()
     });
