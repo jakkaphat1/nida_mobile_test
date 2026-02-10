@@ -14,6 +14,10 @@ class DashboardPage extends BasePage {
         return $(`//android.widget.TextView[@text="${profileName}"]`)
     }
 
+    getDynamicElmentByLabel(label: string) {
+        return $(`//*[@text="${label}" or @content-desc="${label}"]`);
+    }
+
     getDynamicElement(textEn: string, textTh: string) {
         // return $(`//*[@text="${label}" or @content-desc="${label}"]`);
         return $(`//*[contains(@text, "${textEn}") or contains(@text, "${textTh}") or contains(@content-desc, "${textEn}") or contains(@content-desc, "${textTh}")]`);
@@ -161,9 +165,9 @@ class DashboardPage extends BasePage {
         }
     }
 
-    // async clickElementByText(ElementName : string){
-    //     await this.getDynamicElement(ElementName).click()
-    // }
+    async clickElementByText(ElementName : string){
+        await this.getDynamicElmentByLabel(ElementName).click()
+    }
 
     async verifyPersonalInfoData(expectedDataList: string[]) {
         await this.personalInfoContainer.waitForDisplayed({ timeout: 5000 });

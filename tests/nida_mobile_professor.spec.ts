@@ -32,13 +32,17 @@ describe('NIDA Mobile App - Dashboard Test', () => {
         
         await browser.pause(3000); 
 
-        await DashboardPage.clickProfessorProfile();
-
-        const expectedItems = [
-            'Language', 'Accessibility', 'Notification', 
-            'Privacy policy', 'Terms of use', 'Sign out'
-        ];
-        await DashboardPage.verifyMenuAndButtons(expectedItems);
+        // await DashboardPage.clickProfessorProfile();
+    
+            // const expectedItems = [
+            //     { en: 'Language', th: 'ตั้งค่าภาษา' },
+            //     { en: 'Accessibility', th: 'ตั้งค่าการเข้าถึง' },
+            //     { en: 'Notification', th: 'ตั้งค่าการแจ้งเตือน' },
+            //     { en: 'Privacy policy', th: 'นโยบายความเป็นส่วนตัว' },
+            //     { en: 'Terms of use', th: 'เงื่อนไขการใช้งานแอป' },
+            //     { en: 'Sign out', th: 'ออกจากระบบ' }
+            // ];
+            // await DashboardPage.verifyMenuAndButtons(expectedItems);
 
     });
 
@@ -49,13 +53,13 @@ describe('NIDA Mobile App - Dashboard Test', () => {
         await DashboardPage.clickProfessorProfile();
 
         const expectedItems = [
-            'Language',         
-            'Accessibility',   
-            'Notification',    
-            'Privacy policy',   
-            'Terms of use',    
-            'Sign out'
-        ];
+                { en: 'Language', th: 'ตั้งค่าภาษา' },
+                { en: 'Accessibility', th: 'ตั้งค่าการเข้าถึง' },
+                { en: 'Notification', th: 'ตั้งค่าการแจ้งเตือน' },
+                { en: 'Privacy policy', th: 'นโยบายความเป็นส่วนตัว' },
+                { en: 'Terms of use', th: 'เงื่อนไขการใช้งานแอป' },
+                { en: 'Sign out', th: 'ออกจากระบบ' }
+            ];
         await DashboardPage.verifyMenuAndButtons(expectedItems);
 
         await DashboardPage.clickElementByText('VIEW PROFILE')
