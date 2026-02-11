@@ -226,6 +226,19 @@ describe('NIDA Mobile App - Role Student Test', () => {
             await DashboardPage.clickBackToDashboard()
     });
 
-
+    it('TC-04.1 ทดสอบดูแจ้งเตือนข่าวสาร/สถานะคำร้อง' , async () => {
+        console.log('แอพเปิดแล้ว');
+        await LoginPage.clickLoginBtn()
+        await LoginPage.enterPin('777777')
+        await NotificationPage.clickNotificationBellBtn()
+        await NotificationPage.checkNotificationFilter('รายวิชา', 'Subject');
+        await NotificationPage.checkNotificationFilter('ส่วนกลาง', 'Central');
+        await NotificationPage.checkNotificationFilter('หน่วยงาน', 'Agency');
+        await NotificationPage.checkNotificationFilter('ส่วนตัว', 'Personal');
+        await NotificationPage.clickFilterAllNotiBtn()
+        await browser.pause(500);
+        const result = await NotificationPage.checkAllSubFiltersExist();
+        expect(result.allFound).toBe(true);
+    });
 
 });
