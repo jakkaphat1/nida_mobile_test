@@ -44,14 +44,25 @@ class NotificationPage extends BasePage {
         return $('//android.widget.Button[@content-desc="Search"]')
     }
 
+    get kebabButton(){
+        return $('//android.widget.TextView[@resource-id="RNE__ICON__Component" and @text=""]')
+    }
 
+    get markAllAsReadButton(){
+        return $('//android.view.ViewGroup[@content-desc="Mark all as Read" or @content-desc="ทำเครื่องหมายอ่านแล้วทั้งหมด"]')
+    }
+    
+    get deleteAllMessageButton(){
+        return $('//android.view.ViewGroup[@content-desc="Delete all Message" or @content-desc="ลบข้อความทั้งหมด"]')
+    } 
 
+    getPopupText(popupText : string){
+        return $(`//android.widget.TextView[@text="${popupText}"]`)
+    }
 
-
-
-
-
-
+    get ConfirmPopupButton(){
+        return $('//android.widget.Button[@content-desc="ยืนยัน" or @content-desc="Confirm"]')
+    }
 
 
     /**
@@ -153,6 +164,26 @@ class NotificationPage extends BasePage {
 
     async clickConfirmSeachBtn(){
         await this.confirmSeachButton.click()
+    }
+
+    async clickKebabButton(){
+        await this.kebabButton.click()
+    }
+
+    async clickMarkAllasReadBtn(){
+        await this.markAllAsReadButton.click()
+    }
+
+    async clickDeleteAllMessageBtn(){
+        await this.deleteAllMessageButton.click()
+    }
+
+    async checkMarkAllAsReadPopup(popupText : string){
+        await this.getPopupText(popupText).waitForDisplayed();
+    }
+
+    async clickConfirmPopupButton(){
+        await this.ConfirmPopupButton.click()
     }
 }
 

@@ -280,4 +280,35 @@ describe('NIDA Mobile App - Role Student Test', () => {
         await NotificationPage.fillNotiSeachBox('ทดสอบค้นหาช่องค้นหาใน Notification')
         await NotificationPage.clickConfirmSeachBtn()
     });
+
+    it('TC-04.6 ทดสอบทำเครื่องหมายอ่านแล้วทั้งหมด' , async () => {
+        console.log('แอพเปิดแล้ว');
+        await LoginPage.clickLoginBtn()
+        await LoginPage.enterPin('777777')
+        await NotificationPage.clickNotificationBellBtn()
+        await NotificationPage.clickKebabButton()
+        await NotificationPage.clickMarkAllasReadBtn()
+        await NotificationPage.checkMarkAllAsReadPopup('คุณต้องการทำเครื่องหมายอ่านแล้วทั้งหมด')
+        await NotificationPage.clickConfirmPopupButton()
+    });
+
+    it('TC-05.1 ทดสอบดูรายละเอียดของประกาศของมหาวิทยาลัย' , async () => {
+        console.log('แอพเปิดแล้ว');
+        await LoginPage.clickLoginBtn()
+        await LoginPage.enterPin('777777')
+        await DashboardPage.clickSeeDetail()
+        await DashboardPage.checkAnnouncementPage()
+        await DashboardPage.clickBackBtn()
+        await DashboardPage.checkDashboardLandingPage()
+    });
+
+
+
+
+
+
+
+
+
+
 });
