@@ -131,15 +131,16 @@ class DashboardPage extends BasePage {
     }
 
     get signOutButton(){
-        return $('//android.widget.Button[@content-desc="ออกจากระบบ"]')
+        return $('//android.widget.Button[@content-desc="ออกจากระบบ" or @content-desc="Sign out"]')
     }
 
     get confirmSignOutButton() {
-        return $('//android.widget.Button[@content-desc="ออกจากระบบ"]');
+        return $('//android.widget.Button[@content-desc="ออกจากระบบ" or @content-desc="Sign out"]');
     }
 
     get signOutPopupText() {
-        return $('//android.view.ViewGroup[contains(@content-desc, "คุณแน่ใจว่าต้องการ")]');
+        // return $('//android.view.ViewGroup[contains(@content-desc, "คุณแน่ใจว่าต้องการ") or contains(@content-desc, "Are you sure you want to")]');
+        return $('//*[contains(@text, "Are you sure") or contains(@content-desc, "Are you sure") or contains(@text, "คุณแน่ใจ")]');
     }
 
     get fingerprintWording(){
@@ -438,7 +439,11 @@ class DashboardPage extends BasePage {
 
     async clickConfirmSignOut() {
         await this.signOutPopupText.waitForDisplayed({ timeout: 5000 });
-        await this.confirmSignOutButton.click();
+        if (await this.confirmSignOutButton.isDisplayed()) {
+            await this.confirmSignOutButton.click();
+        } else {
+            throw new Error("หาปุ่มยืนยัน Logout ไม่เจอ");
+    }
     }
 
     // async clickFingerprintToggle(){

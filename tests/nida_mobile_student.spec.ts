@@ -391,5 +391,15 @@ describe('NIDA Mobile App - Role Student Test', () => {
         await DashboardPage.checkDashboardLandingPage()
     });
 
-
+    it('TC-10 ทดสอบออกจากระบบบริการนักศึกษาบนมือถือ * กรณีที่ระบบไม่จดจำแอ็กเคานต์ผู้ใช้งาน' , async () => {
+        console.log('แอพเปิดแล้ว');
+        await LoginPage.clickLoginBtn()
+        browser.pause(2000)
+        await LoginPage.enterPin('777777')
+        await browser.pause(2000);
+        await DashboardPage.checkDashboardLandingPage()
+        await DashboardPage.clickProfile()
+        await DashboardPage.clickSignOutAccountBtn()
+        await DashboardPage.clickConfirmSignOut()
+    });
 });
