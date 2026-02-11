@@ -10,6 +10,7 @@ describe('NIDA Mobile App - Role Student Test', () => {
     beforeEach(async () => {
         await driver.terminateApp('th.ac.nida.superapp'); 
         await driver.activateApp('th.ac.nida.superapp');
+        await browser.pause(1500);
     });
 
     it('TC-01 ตรวจสอบ Dashboard และ Profile (บนเครื่องใหม่)', async () => {
@@ -325,7 +326,14 @@ describe('NIDA Mobile App - Role Student Test', () => {
         await DashboardPage.checkDashboardLandingPage()
     });
 
-
+    it('TC-06.1 ทดสอบดูกิจกรรมเพิ่มเติม' , async () => {
+        console.log('แอพเปิดแล้ว');
+        await LoginPage.clickLoginBtn()
+        await LoginPage.enterPin('777777')
+        await DashboardPage.activityCard(1).waitForDisplayed({ timeout: 5000 });
+        await DashboardPage.swipeActivityLeft();
+        await expect(DashboardPage.activityCard(2)).toBeDisplayed();
+    });
 
 
 
