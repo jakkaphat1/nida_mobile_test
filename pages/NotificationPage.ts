@@ -178,7 +178,7 @@ class NotificationPage extends BasePage {
         await this.deleteAllMessageButton.click()
     }
 
-    async checkMarkAllAsReadPopup(popupText : string){
+    async checkReadTextElementInPopup(popupText : string){
         await this.getPopupText(popupText).waitForDisplayed();
     }
 
