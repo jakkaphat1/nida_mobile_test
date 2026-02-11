@@ -333,7 +333,51 @@ describe('NIDA Mobile App - Role Student Test', () => {
         await NIDAAjarnApplicationPage.checkCalendarPageElements()
     });
 
+    // it('TC-07.2 ทดสอบดูกิจกรรมต่าง ๆ จากปฏิทิน' , async () => {
+    //     console.log('แอพเปิดแล้ว');
+    //     await LoginPage.clickLoginBtn()
+    //     await browser.pause(1000);
+    //     await LoginPage.enterPin('777777')
+    //     await DashboardPage.NIDAAjarnAppIcon.click()
+    //     await NIDAAjarnApplicationPage.checkNIDAAjarnApplicationPage()
+    //     await NIDAAjarnApplicationPage.checkCalendarPageElements()
+    //     await NIDAAjarnApplicationPage.selectDateInCalendar(3);
+    //     await NIDAAjarnApplicationPage.checkAppointmentInHome('ทดสอบเพิ่มนัดหมาย' , '02/03/2026' , '10:00 - 17:00')
+    //     await NIDAAjarnApplicationPage.clickAppointmentInHome('ทดสอบเพิ่มนัดหมาย')
+    //     await browser.pause(3000);
+    //     await NIDAAjarnApplicationPage.clickExitMenuINtodo()
+    // }); 
 
+    // it('TC-07.3 ทดสอบนัดหมาย' , async () => {
+    //     console.log('แอพเปิดแล้ว');
+    //     await LoginPage.clickLoginBtn()
+    //     await LoginPage.enterPin('777777')
+    //     await DashboardPage.NIDAAjarnAppIcon.click()
+    //     await NIDAAjarnApplicationPage.checkNIDAAjarnApplicationPage()
+    //     await NIDAAjarnApplicationPage.checkCalendarPageElements()
+    //     await NIDAAjarnApplicationPage.selectDateInCalendar(3);
+    // });
+
+    // it('TC-07.4 ทดสอบตรวจสอบ และดำเนินการสำหรับงานที่รอดำเนินการ' , async () => {
+    //     console.log('แอพเปิดแล้ว');
+    //     await LoginPage.clickLoginBtn()
+    //     await LoginPage.enterPin('777777')
+    //     await DashboardPage.NIDAAjarnAppIcon.click()
+    //     await NIDAAjarnApplicationPage.checkNIDAAjarnApplicationPage()
+    //     await NIDAAjarnApplicationPage.checkCalendarPageElements()
+    //     await NIDAAjarnApplicationPage.clickTodoTab()
+    //     await NIDAAjarnApplicationPage.clickMenuINtodo('กรอกเกรด')
+    //     await NIDAAjarnApplicationPage.clickExitMenuINtodo()
+    // });
+
+    it('TC-08 ทดสอบเข้าใช้งานระบบย่อย' , async () => {
+        console.log('แอพเปิดแล้ว');
+        await LoginPage.clickLoginBtn()
+        await LoginPage.enterPin('777777')
+        await browser.pause(2000);
+        await DashboardPage.clickNIDAUappBtn()
+        await browser.pause(3000);
+    });
 
 
 
