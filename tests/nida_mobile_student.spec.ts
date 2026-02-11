@@ -204,7 +204,27 @@ describe('NIDA Mobile App - Role Student Test', () => {
         await DashboardPage.clickBackBtn()
     });
 
+    it('TC-03.5 ทดสอบดูเงื่อนไขการใช้งานแอป' , async () => {
+            console.log('แอพเปิดแล้ว');
+            await LoginPage.clickLoginBtn()
+            await LoginPage.enterPin('777777')
+            await DashboardPage.clickProfile();
 
+            const expectedItems = [
+                { en: 'Language', th: 'ตั้งค่าภาษา' },
+                { en: 'Accessibility', th: 'ตั้งค่าการเข้าถึง' },
+                { en: 'Notification', th: 'ตั้งค่าการแจ้งเตือน' },
+                { en: 'Privacy policy', th: 'นโยบายความเป็นส่วนตัว' },
+                { en: 'Terms of use', th: 'เงื่อนไขการใช้งานแอป' },
+                { en: 'Sign out', th: 'ออกจากระบบ' }
+            ];
+            await DashboardPage.verifyMenuAndButtons(expectedItems);
+
+            await DashboardPage.clickTermOFUseBtn()
+            await DashboardPage.checkTermOfUse('สิทธิในการได้รับแจ้ง จะมีการแจ้ง “ประกาศเกี่ยวกับความเป็นส่วนตัว (Privacy Notice)” ที่มีรายละเอียดวัตถุประสงค์ในการเก็บรวบรวม ใช้ และเปิดเผยข้อมูลส่วนบุคคลที่ชัดเจนสิทธิในการเพิกถอนความยินยอม ท่านสามารถขอเพิกถอนความยินยอมที่เคยให้สถาบันไว้ได้ทุกเมื่อ ทั้งนี้ไม่ส่งผลกระทบต่อการเก็บรวบรวม ใช้หรือเปิดเผยข้อมูลส่วนบุคคลที่ท่านได้ให้ความ ยินยอมไปแล้วโดยชอบ เฉพาะสำหรับข้อมูลส่วนบุคคลที่ได้เก็บรวบรวม ใช้')
+            await DashboardPage.clickBackBtn()
+            await DashboardPage.clickBackToDashboard()
+    });
 
 
 
