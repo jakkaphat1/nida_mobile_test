@@ -517,6 +517,10 @@ class DashboardPage extends BasePage {
         await expect(cleanActual).toContain(cleanExpected);
     }
 
+    async clickNIDAAjarnAppIcon(){
+        await this.NIDAAjarnAppIcon.click()
+    }
+
 }
 
 export default new DashboardPage();

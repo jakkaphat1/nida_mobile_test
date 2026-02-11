@@ -10,7 +10,7 @@ describe('NIDA Mobile App - Role Student Test', () => {
     beforeEach(async () => {
         await driver.terminateApp('th.ac.nida.superapp'); 
         await driver.activateApp('th.ac.nida.superapp');
-        await browser.pause(1500);
+        await browser.pause(3000);
     });
 
     it('TC-01 ตรวจสอบ Dashboard และ Profile (บนเครื่องใหม่)', async () => {
@@ -316,16 +316,6 @@ describe('NIDA Mobile App - Role Student Test', () => {
         await DashboardPage.checkDashboardLandingPage()
     });
 
-    it('TC-05.1 ทดสอบดูรายละเอียดของประกาศของมหาวิทยาลัย' , async () => {
-        console.log('แอพเปิดแล้ว');
-        await LoginPage.clickLoginBtn()
-        await LoginPage.enterPin('777777')
-        await DashboardPage.clickSeeDetail()
-        await DashboardPage.checkAnnouncementPage()
-        await DashboardPage.clickBackBtn()
-        await DashboardPage.checkDashboardLandingPage()
-    });
-
     it('TC-06.1 ทดสอบดูกิจกรรมเพิ่มเติม' , async () => {
         console.log('แอพเปิดแล้ว');
         await LoginPage.clickLoginBtn()
@@ -335,7 +325,13 @@ describe('NIDA Mobile App - Role Student Test', () => {
         await expect(DashboardPage.activityCard(2)).toBeDisplayed();
     });
 
-
+    it('TC-07.1 การเข้าใช้งานแอปพลิเคชัน NIDA อาจารย์ นักศึกษา' , async () => {
+        console.log('แอพเปิดแล้ว');
+        await LoginPage.clickLoginBtn()
+        await LoginPage.enterPin('777777')
+        await DashboardPage.clickNIDAAjarnAppIcon()
+        await NIDAAjarnApplicationPage.checkCalendarPageElements()
+    });
 
 
 

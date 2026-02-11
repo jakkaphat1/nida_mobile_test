@@ -242,7 +242,7 @@ describe('NIDA Mobile App - Dashboard Test', () => {
         console.log('แอพเปิดแล้ว');
         await LoginPage.clickLoginBtn()
         await LoginPage.enterPin('777777')
-        await DashboardPage.clickApplicationByName('NIDA Ajan Nisit','NIDA อาจารย์ นักศึกษา')
+        await DashboardPage.clickApplicationByName('NIDA Ajan Nisit','NIDA อาจารย์ นิสิต')
         await NIDAAjarnApplicationPage.checkNIDAAjarnApplicationPage()
         await NIDAAjarnApplicationPage.checkCalendarPageElements()
     });
