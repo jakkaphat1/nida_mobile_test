@@ -15,7 +15,7 @@ describe('NIDA Mobile App - Role Student Test', () => {
 
     it('TC-01 ตรวจสอบ Dashboard และ Profile (บนเครื่องใหม่)', async () => {
             console.log('--- เริ่มต้น Test บนเครื่องใหม่ ---');
-    
+            await LoginPage.clickChangeLanguageBtn()
             await LoginPage.clickLoginBtn();
     
             console.log('กำลังกรอก Username/Password...');

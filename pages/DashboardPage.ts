@@ -526,6 +526,8 @@ class DashboardPage extends BasePage {
         await this.NIDAAjarnAppIcon.click()
     }
 
+    
+
 }
 
 export default new DashboardPage();

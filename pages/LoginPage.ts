@@ -48,7 +48,9 @@ class LoginPage extends BasePage {
         return $('//android.widget.FrameLayout[@resource-id="android:id/content"]/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup')
     }
 
-    
+    get changeLanguageButton(){
+        return $('//android.widget.Button[@content-desc="EN" or @content-desc="TH"]')
+    }    
 
     /**
      * Method
@@ -157,6 +159,10 @@ class LoginPage extends BasePage {
 
     async clickFingerprintInAllowAccessBth(){
         await this.FingerprintInAllowAccessButton.click()
+    }
+
+    async clickChangeLanguageBtn(){
+        await this.changeLanguageButton.click()
     }
 
 }
