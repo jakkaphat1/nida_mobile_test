@@ -94,18 +94,18 @@ describe('NIDA Mobile App - Dashboard Test', () => {
         await DashboardPage.clickBackBtn()
     });
 
-    // it('TC-03.2 กรณีตั้งค่าการเข้าถึง' , async () => {
-    //     console.log('แอพเปิดแล้ว');
-    //     // await LoginPage.clickLoginBtn()
-    //     // await LoginPage.enterPin('777777')
-    //     await LoginPage.handleBiometricPopup()
-    //     // await DashboardPage.clickProfile();
-    //     // await DashboardPage.clickAccessbilityBtn()
-    //     // console.log('เข้าหน้าตั้งค่าการเข้าถึง')
-    //     // await DashboardPage.clickFingerprintToggle()
-    //     // console.log('กดปุ่ม Toggle Fingerprint scan')
-    //     // await DashboardPage.clickBackBtn()
-    // });
+    it('TC-03.2 กรณีตั้งค่าการเข้าถึง' , async () => {
+        console.log('แอพเปิดแล้ว');
+        await LoginPage.clickLoginBtn()
+        await LoginPage.enterPin('777777')
+        await LoginPage.handleBiometricPopup()
+        await DashboardPage.clickProfile();
+        await DashboardPage.clickAccessbilityBtn()
+        console.log('เข้าหน้าตั้งค่าการเข้าถึง')
+        await DashboardPage.clickFingerprintToggle() // กรณีที่ เปิด Fingerprint เท่านั้น 
+        console.log('กดปุ่ม Toggle Fingerprint scan')
+        await DashboardPage.clickBackBtn()
+    });
 
     it('TC-03.3 กรณีตั้งค่าการแจ้งเตือน' , async () => {
         console.log('แอพเปิดแล้ว');

@@ -173,7 +173,7 @@ describe('NIDA Mobile App - Role Student Test', () => {
         await DashboardPage.clickProfile();
         await DashboardPage.clickAccessbilityBtn()
         console.log('เข้าหน้าตั้งค่าการเข้าถึง')
-        await DashboardPage.clickFingerprintToggle()
+        await DashboardPage.clickFingerprintToggle() // กรณีที่ เปิด Fingerprint เท่านั้น 
         console.log('กดปุ่ม Toggle Fingerprint scan')
         await DashboardPage.clickBackBtn()
     });
