@@ -14,37 +14,37 @@ describe('NIDA Mobile App - Role Student Test', () => {
     });
 
     it('TC-01 ตรวจสอบ Dashboard และ Profile (บนเครื่องใหม่)', async () => {
-            console.log('--- เริ่มต้น Test บนเครื่องใหม่ ---');
-            await LoginPage.clickChangeLanguageBtn()
-            await LoginPage.clickLoginBtn();
-    
-            console.log('กำลังกรอก Username/Password...');
-            await LoginPage.login('6810451023100@stu.nida.ac.th', 'unext@2022');
-            await LoginPage.clickLoginBtn();
-    
-            try {
-                await LoginPage.clickFingerprintInAllowAccessBth();
-                await LoginPage.clickOKinAllowAccessContent();
-            } catch (e) { 
-                console.log('ไม่มี Popup ขึ้น'); 
-            }
-            console.log('กำลังตั้งค่า PIN');
-            await LoginPage.clickLoginBtn();
-            await LoginPage.enterPin('777777');  
-            await LoginPage.enterPin2('777777');  
-            
-            await browser.pause(3000); 
-            // await DashboardPage.clickProfessorProfile();
-    
-            // const expectedItems = [
-            //     { en: 'Language', th: 'ตั้งค่าภาษา' },
-            //     { en: 'Accessibility', th: 'ตั้งค่าการเข้าถึง' },
-            //     { en: 'Notification', th: 'ตั้งค่าการแจ้งเตือน' },
-            //     { en: 'Privacy policy', th: 'นโยบายความเป็นส่วนตัว' },
-            //     { en: 'Terms of use', th: 'เงื่อนไขการใช้งานแอป' },
-            //     { en: 'Sign out', th: 'ออกจากระบบ' }
-            // ];
-            // await DashboardPage.verifyMenuAndButtons(expectedItems);
+        console.log('--- เริ่มต้น Test บนเครื่องใหม่ ---');
+        await LoginPage.clickChangeLanguageBtn()
+        await LoginPage.clickLoginBtn();
+
+        console.log('กำลังกรอก Username/Password...');
+        await LoginPage.login('6810451023100@stu.nida.ac.th', 'unext@2022');
+        await LoginPage.clickLoginBtn();
+
+        try {
+            await LoginPage.clickFingerprintInAllowAccessBth();
+            await LoginPage.clickOKinAllowAccessContent();
+        } catch (e) { 
+            console.log('ไม่มี Popup ขึ้น'); 
+        }
+        console.log('กำลังตั้งค่า PIN');
+        await LoginPage.clickLoginBtn();
+        await LoginPage.enterPin('777777');  
+        await LoginPage.enterPin2('777777');  
+        
+        await browser.pause(3000); 
+        // await DashboardPage.clickProfessorProfile();
+
+        // const expectedItems = [
+        //     { en: 'Language', th: 'ตั้งค่าภาษา' },
+        //     { en: 'Accessibility', th: 'ตั้งค่าการเข้าถึง' },
+        //     { en: 'Notification', th: 'ตั้งค่าการแจ้งเตือน' },
+        //     { en: 'Privacy policy', th: 'นโยบายความเป็นส่วนตัว' },
+        //     { en: 'Terms of use', th: 'เงื่อนไขการใช้งานแอป' },
+        //     { en: 'Sign out', th: 'ออกจากระบบ' }
+        // ];
+        // await DashboardPage.verifyMenuAndButtons(expectedItems);
     
         });
 
@@ -144,26 +144,26 @@ describe('NIDA Mobile App - Role Student Test', () => {
     });
 
     it('TC-03.1 ทดสอบตั้งค่าแอปพลิเคชันและแจ้งเตือนกรณีตั้งค่าภาษา' , async () => {
-            console.log('แอพเปิดแล้ว');
-            await LoginPage.clickLoginBtn()
-            await LoginPage.enterPin('777777')
-            await DashboardPage.clickProfile();
-            await DashboardPage.clickLanguageBtn()
-            await DashboardPage.clickChooseLanguageBox('TH') //กรณีเลือกภาษาไทย
-            await browser.pause(2000)
-            await DashboardPage.clickChooseLanguageBox('EN') //กรณีเลือกภาษาอังกฤษ
-            await DashboardPage.clickBackBtn()
+        console.log('แอพเปิดแล้ว');
+        await LoginPage.clickLoginBtn()
+        await LoginPage.enterPin('777777')
+        await DashboardPage.clickProfile();
+        await DashboardPage.clickLanguageBtn()
+        await DashboardPage.clickChooseLanguageBox('TH') //กรณีเลือกภาษาไทย
+        await browser.pause(2000)
+        await DashboardPage.clickChooseLanguageBox('EN') //กรณีเลือกภาษาอังกฤษ
+        await DashboardPage.clickBackBtn()
 
-            const expectedItems = [
-                { en: 'Language', th: 'ตั้งค่าภาษา' },
-                { en: 'Accessibility', th: 'ตั้งค่าการเข้าถึง' },
-                { en: 'Notification', th: 'ตั้งค่าการแจ้งเตือน' },
-                { en: 'Privacy policy', th: 'นโยบายความเป็นส่วนตัว' },
-                { en: 'Terms of use', th: 'เงื่อนไขการใช้งานแอป' },
-                { en: 'Sign out', th: 'ออกจากระบบ' }
-            ];
-            await DashboardPage.verifyMenuAndButtons(expectedItems);
-        });
+        const expectedItems = [
+            { en: 'Language', th: 'ตั้งค่าภาษา' },
+            { en: 'Accessibility', th: 'ตั้งค่าการเข้าถึง' },
+            { en: 'Notification', th: 'ตั้งค่าการแจ้งเตือน' },
+            { en: 'Privacy policy', th: 'นโยบายความเป็นส่วนตัว' },
+            { en: 'Terms of use', th: 'เงื่อนไขการใช้งานแอป' },
+            { en: 'Sign out', th: 'ออกจากระบบ' }
+        ];
+        await DashboardPage.verifyMenuAndButtons(expectedItems);
+    });
 
     it('TC-03.3 กรณีตั้งค่าการแจ้งเตือน' , async () => {
             console.log('แอพเปิดแล้ว');
@@ -256,7 +256,7 @@ describe('NIDA Mobile App - Role Student Test', () => {
         await NotificationPage.clickNotificationFilter('ส่วนกลาง', 'Central');
         await NotificationPage.clickNotificationFilter('หน่วยงาน', 'Agency');
         await NotificationPage.clickNotificationFilter('ส่วนตัว', 'Personal');
-     });   
+    });   
 
     it('TC-04.3 ทดสอบ Filter ตามสถานะข้อความ' , async () => {
         console.log('แอพเปิดแล้ว');
